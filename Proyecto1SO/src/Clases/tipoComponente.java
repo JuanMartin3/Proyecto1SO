@@ -8,8 +8,10 @@ package Clases;
  *
  * @author Windows 10
  */
-public class Empresa {
-     private String nombre;
-     
-     
+public enum tipoComponente {
+    PLACA_BASE,
+    CPU,
+    RAM,
+    FUENTE_ALIMENTACION,
+    TARJETA_GRAFICA
 }
