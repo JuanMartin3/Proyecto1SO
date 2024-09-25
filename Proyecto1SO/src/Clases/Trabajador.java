@@ -33,11 +33,59 @@ public class Trabajador {
     
     public void terminarTurno(){
         this.estaTrabajando = false;
-        this.horasTrabajadas += 8;
+        this.horasTrabajadas += 24;
     }
     
     public double calcularSalario(){
         return this.horasTrabajadas * this.salarioPorHora;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getCedula() {
+        return cedula;
+    }
+
+    public double getSalarioPorHora() {
+        return salarioPorHora;
+    }
+
+    public boolean isEstaTrabajando() {
+        return estaTrabajando;
+    }
+
+    public int getHorasTrabajadas() {
+        return horasTrabajadas;
+    }
+
+    public Almacen getAlmacenAsignado() {
+        return almacenAsignado;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
+
+    public void setSalarioPorHora(double salarioPorHora) {
+        this.salarioPorHora = salarioPorHora;
+    }
+
+    public void setEstaTrabajando(boolean estaTrabajando) {
+        this.estaTrabajando = estaTrabajando;
+    }
+
+    public void setHorasTrabajadas(int horasTrabajadas) {
+        this.horasTrabajadas = horasTrabajadas;
+    }
+
+    public void setAlmacenAsignado(Almacen almacenAsignado) {
+        this.almacenAsignado = almacenAsignado;
     }
     
     
