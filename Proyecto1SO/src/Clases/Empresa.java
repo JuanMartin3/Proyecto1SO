@@ -33,12 +33,21 @@ public class Empresa {
         this.almacenRAM = new Almacen(tipoComponente.RAM);
         this.almacenGraficas = new Almacen(tipoComponente.TARJETA_GRAFICA);
         this.almacenFuentes = new Almacen(tipoComponente.FUENTE_ALIMENTACION);
-        this.gananciasBrutas = gananciasBrutas;
-        this.costoOperativo = costoOperativo;
-        this.utilidadEstudio = utilidadEstudio;
+        this.gananciasBrutas = 0;
+        this.costoOperativo = 0;
+        this.utilidadEstudio = 0;
         this.diasParaEntrega = diasParaEntrega;
     }
-
+    
+    //metodo para agregar un trabajador
+    public void agregarTrabajador(Trabajador trabajador){
+        trabajadores.appendLast(trabajador);
+    }
+    
+   //metodo para calcular utilidad
+    public void calcularUtilidad(double costo, double ganancia){
+        this.utilidadEstudio += ganancia - costo;
+    }
     
     
     
