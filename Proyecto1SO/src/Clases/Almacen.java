@@ -73,5 +73,17 @@ public class Almacen {
         this.capacidadMaxima = capacidadMaxima;
     }
     
+    public synchronized void incrementarCantidad(tipoComponente componente) {
+        if (cantidadActual < capacidadMaxima) {
+            if (componente == tipoComponente) {
+                cantidadActual++;
+                System.out.println("Se ha añadido un " + componente + " al almacén.");
+            } else {
+                System.err.println("Error: Se está intentando añadir un componente incorrecto al almacén.");
+            }
+        } else {
+            System.err.println("El almacén está lleno.");
+        }
+    }
     
 }
