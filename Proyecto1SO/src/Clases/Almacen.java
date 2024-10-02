@@ -4,86 +4,137 @@
  */
 package Clases;
 
-import static Clases.tipoComponente.CPU;
-import static Clases.tipoComponente.FUENTE_ALIMENTACION;
-import static Clases.tipoComponente.PLACA_BASE;
-import static Clases.tipoComponente.RAM;
-import static Clases.tipoComponente.TARJETA_GRAFICA;
+//import static Clases.tipoComponente.CPU;
+//import static Clases.tipoComponente.FUENTE_ALIMENTACION;
+//import static Clases.tipoComponente.PLACA_BASE;
+//import static Clases.tipoComponente.RAM;
+//import static Clases.tipoComponente.TARJETA_GRAFICA;
 
 /**
  *
  * @author Windows 10
  */
 public class Almacen {
-    private tipoComponente tipoComponente;
-    private int cantidadActual;
-    private int capacidadMaxima;
+    private int cantidadPlaca;
+    private int cantidadCPU;
+    private int cantidadRAM;
+    private int cantidadFuente;
+    private int cantidadGPU;
+    private int capacidadPlaca;
+    private int capacidadCPU;
+    private int capacidadRAM;
+    private int capacidadFuente;
+    private int capacidadGPU;
     //falta el semaforo para garantizar que solo un trabajador a la vez pueda acceder o modificar el inventario (exclusión mutua)
     
     //constructor
-    public Almacen(tipoComponente tipoComponente){
-        this.tipoComponente = tipoComponente;
-        if (null != this.tipoComponente)switch (this.tipoComponente) {
-            case PLACA_BASE:
-                this.capacidadMaxima = 25;
-                break;
-            case CPU:
-                this.capacidadMaxima = 20;
-                break;
-            case RAM:
-                this.capacidadMaxima = 55;
-                break;
-            case FUENTE_ALIMENTACION:
-                this.capacidadMaxima = 35;
-                break;
-            case TARJETA_GRAFICA:
-                this.capacidadMaxima = 35;
-                break;
-            default:
-                break;
-        }
-        this.cantidadActual = 0;
+    public Almacen(){
+        this.cantidadPlaca = 0;
+        this.cantidadCPU = 0;
+        this.cantidadRAM = 0;
+        this.cantidadFuente = 0;
+        this.cantidadCPU = 0;
+        this.capacidadPlaca = 25;
+        this.capacidadCPU = 20;
+        this.capacidadRAM = 55;
+        this.capacidadFuente = 35;
+        this.capacidadGPU = 10;
         //this. del semaforo
     }
-    
-    //get del tipo de componente
-    public tipoComponente getTipoComponente(){
-        return tipoComponente;
-    }
-    
-    //get de la cantidad actual
-    public int getCantidadActual(){
-        return cantidadActual;
-    }
-    
-    //get de la capacidad maxima del almacen
-    public int getCapacidadMaxima(){
-        return capacidadMaxima;
+
+    public int getCantidadPlaca() {
+        return cantidadPlaca;
     }
 
-    public void setTipoComponente(tipoComponente tipoComponente) {
-        this.tipoComponente = tipoComponente;
+    public void setCantidadPlaca(int cantidadPlaca) {
+        this.cantidadPlaca = cantidadPlaca;
     }
 
-    public void setCantidadActual(int cantidadActual) {
-        this.cantidadActual = cantidadActual;
+    public int getCantidadCPU() {
+        return cantidadCPU;
     }
 
-    public void setCapacidadMaxima(int capacidadMaxima) {
-        this.capacidadMaxima = capacidadMaxima;
+    public void setCantidadCPU(int cantidadCPU) {
+        this.cantidadCPU = cantidadCPU;
+    }
+
+    public int getCantidadRAM() {
+        return cantidadRAM;
+    }
+
+    public void setCantidadRAM(int cantidadRAM) {
+        this.cantidadRAM = cantidadRAM;
+    }
+
+    public int getCantidadFuente() {
+        return cantidadFuente;
+    }
+
+    public void setCantidadFuente(int cantidadFuente) {
+        this.cantidadFuente = cantidadFuente;
+    }
+
+    public int getCantidadGPU() {
+        return cantidadGPU;
+    }
+
+    public void setCantidadGPU(int cantidadGPU) {
+        this.cantidadGPU = cantidadGPU;
+    }
+
+    public int getCapacidadPlaca() {
+        return capacidadPlaca;
+    }
+
+    public void setCapacidadPlaca(int capacidadPlaca) {
+        this.capacidadPlaca = capacidadPlaca;
+    }
+
+    public int getCapacidadCPU() {
+        return capacidadCPU;
+    }
+
+    public void setCapacidadCPU(int capacidadCPU) {
+        this.capacidadCPU = capacidadCPU;
+    }
+
+    public int getCapacidadRAM() {
+        return capacidadRAM;
+    }
+
+    public void setCapacidadRAM(int capacidadRAM) {
+        this.capacidadRAM = capacidadRAM;
+    }
+
+    public int getCapacidadFuente() {
+        return capacidadFuente;
+    }
+
+    public void setCapacidadFuente(int capacidadFuente) {
+        this.capacidadFuente = capacidadFuente;
+    }
+
+    public int getCapacidadGPU() {
+        return capacidadGPU;
+    }
+
+    public void setCapacidadGPU(int capacidadGPU) {
+        this.capacidadGPU = capacidadGPU;
     }
     
-    public synchronized void incrementarCantidad(tipoComponente componente) {
-        if (cantidadActual < capacidadMaxima) {
-            if (componente == tipoComponente) {
-                cantidadActual++;
-                System.out.println("Se ha añadido un " + componente + " al almacén.");
-            } else {
-                System.err.println("Error: Se está intentando añadir un componente incorrecto al almacén.");
-            }
-        } else {
-            System.err.println("El almacén está lleno.");
-        }
-    }
+   
+    
+//    public synchronized void incrementarCantidad(tipoComponente componente) {
+//        if (cantidadActual < capacidadMaxima) {
+//            if (componente == tipoComponente) {
+//                cantidadActual++;
+//                System.out.println("Se ha añadido un " + componente + " al almacén.");
+//            } else {
+//                System.err.println("Error: Se está intentando añadir un componente incorrecto al almacén.");
+//            }
+//        } else {
+//            System.err.println("El almacén está lleno.");
+//        }
+//    }
     
 }

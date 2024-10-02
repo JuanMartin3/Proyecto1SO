@@ -4,6 +4,8 @@
  */
 package proyecto1so;
 
+import Clases.Empresa;
+
 /**
  *
  * @author Windows 10

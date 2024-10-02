@@ -9,119 +9,81 @@ import Estructuras.LinkedList;
  * @author Windows 10
  */
 public class Empresa {
-     private String nombre;
-     private Trabajador director;
-     private Trabajador projectManager;
-     private LinkedList<Trabajador> trabajadores;
-     private Almacen almacenPlacas;
-     private Almacen almacenCPU;
-     private Almacen almacenRAM;
-     private Almacen almacenGraficas;
-     private Almacen almacenFuentes;
+     //private Trabajador director;
+     //private Trabajador projectManager;
+     //private Trabajador[] trabajadores;
+     private int nmrTrabajadores;
+     private Almacen almacen;
      private double gananciasBrutas;
      private double costoOperativo;
      private double utilidadEstudio;
-     private int diasParaEntrega;
+     //private int diasParaEntrega;
 
-    public Empresa(String nombre, Trabajador director, Trabajador projectManager, LinkedList<Trabajador> trabajadores, Almacen almacenPlacas, Almacen almacenCPU, Almacen almacenRAM, Almacen almacenGraficas, Almacen almacenFuentes, double gananciasBrutas, double costoOperativo, double utilidadEstudio, int diasParaEntrega) {
-        this.nombre = nombre;
-        this.director = director;
-        this.projectManager = projectManager;
-        this.trabajadores = new LinkedList<>();
-        this.almacenPlacas = new Almacen(tipoComponente.PLACA_BASE);
-        this.almacenCPU = new Almacen(tipoComponente.CPU);
-        this.almacenRAM = new Almacen(tipoComponente.RAM);
-        this.almacenGraficas = new Almacen(tipoComponente.TARJETA_GRAFICA);
-        this.almacenFuentes = new Almacen(tipoComponente.FUENTE_ALIMENTACION);
+    public Empresa(int nmrTrabajadores) {
+      
+        //this.director = director;
+        //this.projectManager = projectManager;
+        this.nmrTrabajadores = nmrTrabajadores;
+        //this.trabajadores = new Trabajador[nmrTrabajadores];
+        this.almacen = new Almacen();
         this.gananciasBrutas = 0;
         this.costoOperativo = 0;
         this.utilidadEstudio = 0;
-        this.diasParaEntrega = diasParaEntrega;
+        //this.diasParaEntrega = diasParaEntrega;
     }
     
     //metodo para agregar un trabajador
-    public void agregarTrabajador(Trabajador trabajador){
-        trabajadores.appendLast(trabajador);
+    public void agregarTrabajadores(Trabajador trabajador){
+        
     }
     
    //metodo para calcular utilidad
     public void calcularUtilidad(double costo, double ganancia){
         this.utilidadEstudio += ganancia - costo;
     }
+
+//    public Trabajador getDirector() {
+//        return director;
+//    }
+//
+//    public void setDirector(Trabajador director) {
+//        this.director = director;
+//    }
+//
+//    public Trabajador getProjectManager() {
+//        return projectManager;
+//    }
+//
+//    public void setProjectManager(Trabajador projectManager) {
+//        this.projectManager = projectManager;
+//    }
+//
+//    public Trabajador[] getTrabajadores() {
+//        return trabajadores;
+//    }
+
+//    public void setTrabajadores(Trabajador[] trabajadores) {
+//        this.trabajadores = trabajadores;
+//    }
+
+    public int getNmrTrabajadores() {
+        return nmrTrabajadores;
+    }
+
+    public void setNmrTrabajadores(int nmrTrabajadores) {
+        this.nmrTrabajadores = nmrTrabajadores;
+    }
+
     
-    
-    
-    public String getNombre() {
-        return nombre;
+    public Almacen getAlmacen() {
+        return almacen;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setAlmacen(Almacen almacen) {
+        this.almacen = almacen;
     }
 
-    public Trabajador getDirector() {
-        return director;
-    }
-
-    public void setDirector(Trabajador director) {
-        this.director = director;
-    }
-
-    public Trabajador getProjectManager() {
-        return projectManager;
-    }
-
-    public void setProjectManager(Trabajador projectManager) {
-        this.projectManager = projectManager;
-    }
-
-    public LinkedList<Trabajador> getTrabajadores() {
-        return trabajadores;
-    }
-
-    public void setTrabajadores(LinkedList<Trabajador> trabajadores) {
-        this.trabajadores = trabajadores;
-    }
-
-    public Almacen getAlmacenPlacas() {
-        return almacenPlacas;
-    }
-
-    public void setAlmacenPlacas(Almacen almacenPlacas) {
-        this.almacenPlacas = almacenPlacas;
-    }
-
-    public Almacen getAlmacenCPU() {
-        return almacenCPU;
-    }
-
-    public void setAlmacenCPU(Almacen almacenCPU) {
-        this.almacenCPU = almacenCPU;
-    }
-
-    public Almacen getAlmacenRAM() {
-        return almacenRAM;
-    }
-
-    public void setAlmacenRAM(Almacen almacenRAM) {
-        this.almacenRAM = almacenRAM;
-    }
-
-    public Almacen getAlmacenGraficas() {
-        return almacenGraficas;
-    }
-
-    public void setAlmacenGraficas(Almacen almacenGraficas) {
-        this.almacenGraficas = almacenGraficas;
-    }
-
-    public Almacen getAlmacenFuentes() {
-        return almacenFuentes;
-    }
-
-    public void setAlmacenFuentes(Almacen almacenFuentes) {
-        this.almacenFuentes = almacenFuentes;
-    }
+   
 
     public double getGananciasBrutas() {
         return gananciasBrutas;
@@ -147,13 +109,13 @@ public class Empresa {
         this.utilidadEstudio = utilidadEstudio;
     }
 
-    public int getDiasParaEntrega() {
-        return diasParaEntrega;
-    }
-
-    public void setDiasParaEntrega(int diasParaEntrega) {
-        this.diasParaEntrega = diasParaEntrega;
-    }
+//    public int getDiasParaEntrega() {
+//        return diasParaEntrega;
+//    }
+//
+//    public void setDiasParaEntrega(int diasParaEntrega) {
+//        this.diasParaEntrega = diasParaEntrega;
+//    }
       
      
 }
