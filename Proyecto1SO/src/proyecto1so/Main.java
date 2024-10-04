@@ -38,7 +38,6 @@ public class Main {
         Productor trabajador3 = new Productor("David", 3, 40, msi, mutex);
         Productor trabajador4 = new Productor("Julio", 4, 40, msi, mutex);
         Productor trabajador5 = new Productor("Alvaro", 5, 40, msi, mutex);
-        
         ProjectManager pm = new ProjectManager("Juan C.", 40, msi, mutex, 10);
         
         trabajador1.start();

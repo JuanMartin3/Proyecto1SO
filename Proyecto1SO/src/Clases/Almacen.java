@@ -4,6 +4,7 @@
  */
 package Clases;
 
+import java.util.concurrent.Semaphore;
 //import static Clases.tipoComponente.CPU;
 //import static Clases.tipoComponente.FUENTE_ALIMENTACION;
 //import static Clases.tipoComponente.PLACA_BASE;
@@ -25,6 +26,7 @@ public class Almacen {
     private int capacidadRAM;
     private int capacidadFuente;
     private int capacidadGPU;
+    public Semaphore semaforo;
     //falta el semaforo para garantizar que solo un trabajador a la vez pueda acceder o modificar el inventario (exclusión mutua)
     
     //constructor
@@ -39,7 +41,16 @@ public class Almacen {
         this.capacidadRAM = 55;
         this.capacidadFuente = 35;
         this.capacidadGPU = 10;
+        this.semaforo = new Semaphore(1);
         //this. del semaforo
+    }
+    
+    public void adquirirSemaforo() throws InterruptedException {
+        semaforo.acquire();
+    }
+    
+    public void liberarSemaforo(){
+        semaforo.release();
     }
 
     public int getCantidadPlaca() {
