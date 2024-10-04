@@ -29,9 +29,9 @@ public class Productor extends Trabajador {
         while (days <= 5) {
             try {
                 // Adquirir el permiso del semáforo del almacén
-                System.out.println(this.nombre + " está intentando adquirir el semáforo.");
+                System.out.println(this.nombre + " esta intentando adquirir el semaforo.");
                 this.empresa.getAlmacen().adquirirSemaforo();
-                System.out.println(this.nombre + " ha adquirido el semáforo.");     
+                System.out.println(this.nombre + " ha adquirido el semaforo.");     
                 // Código para modificar el inventario
                 int cantCPU = this.empresa.getAlmacen().getCantidadCPU();
                 int newCantCPU = cantCPU + 1;
@@ -75,7 +75,7 @@ public class Productor extends Trabajador {
                 sleep(500);
 
                 this.mutex.release();
-                System.out.println(this.nombre + " ha liberado el semáforo.");
+                System.out.println(this.nombre + " ha liberado el semaforo.");
                 this.empresa.getAlmacen().liberarSemaforo(); // Liberar el permiso del semáforo del almacén
 
                 sleep(1000);

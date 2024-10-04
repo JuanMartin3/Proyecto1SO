@@ -8,6 +8,7 @@ import Clases.Almacen;
 import Clases.Empresa;
 import Clases.Productor;
 import Clases.ProjectManager;
+import Clases.Ensambladores;
 import Clases.Trabajador;
 import Estructuras.LinkedList;
 import static java.lang.Thread.sleep;
@@ -40,12 +41,19 @@ public class Main {
         Productor trabajador5 = new Productor("Alvaro", 5, 40, msi, mutex);
         ProjectManager pm = new ProjectManager("Juan C.", 40, msi, mutex, 10);
         
+        double precioSinTarjetaGrafica = 180000.0;
+        double precioConTarjetaGrafica = 250000.0;
+        Ensambladores ensamblador1 = new Ensambladores("Carlos", 50, msi, mutex, 5, precioSinTarjetaGrafica, precioConTarjetaGrafica);
+
+       
+        
         trabajador1.start();
         trabajador2.start();
         trabajador3.start();
         trabajador4.start();
         trabajador5.start();
         pm.start();
+        ensamblador1.start();
         
         sleep((long) (duracionDia*2));
         System.out.println("");

@@ -27,7 +27,7 @@ public class Almacen {
     private int capacidadFuente;
     private int capacidadGPU;
     public Semaphore semaforo;
-    //falta el semaforo para garantizar que solo un trabajador a la vez pueda acceder o modificar el inventario (exclusión mutua)
+    
     
     //constructor
     public Almacen(){
