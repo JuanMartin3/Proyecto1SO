@@ -30,16 +30,16 @@ public class Main {
         
         //Prueba de trabajadores como hilos
         
-        Empresa msi = new Empresa(4, 1, 3, 4, 5, 6, 7, 8, 24000, 4);
+        Empresa msi = new Empresa(4, 1, 3, 4, 5, 6, 7, 8, 4000, 4, 5, 16);
         
-        Productor trabajador1 = new Productor("Jose", 1, msi);
-        Productor trabajador2 = new Productor("Juan", 2,  msi);
-        Productor trabajador3 = new Productor("David", 3, msi);
-        Productor trabajador4 = new Productor("Julio", 4, msi);
-        Productor trabajador5 = new Productor("Alvaro", 5, msi);
-        ProjectManager pm = new ProjectManager("Juan C.", msi, 10);
+        //Productor trabajador1 = new Productor("Jose", 1, msi);
+        //Productor trabajador2 = new Productor("Juan", 2,  msi);
+        //Productor trabajador3 = new Productor("David", 3, msi);
+        //Productor trabajador4 = new Productor("Julio", 4, msi);
+        //Productor trabajador5 = new Productor("Alvaro", 5, msi);
+        //ProjectManager pm = new ProjectManager("Juan C.", msi, 10);
         
-        //Ensambladores ensamblador1 = new Ensambladores("Carlos", 50, msi, mutex, 5, precioSinTarjetaGrafica, precioConTarjetaGrafica);
+        Ensambladores ensamblador1 = new Ensambladores("Carlos", msi);
 
        
         System.out.println("1");
@@ -48,8 +48,8 @@ public class Main {
 //        trabajador3.start();
 //        trabajador4.start();
 //        trabajador5.start();
-        pm.start();
-        //ensamblador1.start();
+//        pm.start();
+        ensamblador1.start();
         
         msi.pasoDeDias();
         

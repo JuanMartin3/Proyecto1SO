@@ -28,29 +28,49 @@ public class Almacen {
     private int capacidadGPU;
     private int cantPc;
     private int cantPcGPU;
+    private int contadorPc;
     public Semaphore mutex;
     
     
     //constructor
     public Almacen(){
-        this.cantidadPlaca = 0;
-        this.cantidadCPU = 0;
-        this.cantidadRAM = 0;
-        this.cantidadFuente = 0;
-        this.cantidadGPU = 0;
+        this.cantidadPlaca = 200;
+        this.cantidadCPU = 200;
+        this.cantidadRAM = 200;
+        this.cantidadFuente = 200;
+        this.cantidadGPU = 200;
         this.capacidadPlaca = 25;
         this.capacidadCPU = 20;
         this.capacidadRAM = 55;
         this.capacidadFuente = 35;
         this.capacidadGPU = 10;
+        
         this.cantPc = 0;
         this.cantPcGPU = 0;
+        this.contadorPc = 1;
+        
         this.mutex = new Semaphore(1);
         //this. del semaforo
     }
     
     public void adquirirSemaforo() throws InterruptedException {
         mutex.acquire();
+    }
+
+    public int getContadorPc() {
+        return contadorPc;
+    }
+
+    public void setContadorPc(int contadorPc) {
+        this.contadorPc = contadorPc;
+    }
+
+    public Semaphore getMutex() {
+        return mutex;
+    }
+
+    public void setMutex(Semaphore mutex) {
+        this.mutex = mutex;
     }
     
     public void liberarSemaforo(){

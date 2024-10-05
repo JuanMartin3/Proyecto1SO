@@ -13,75 +13,95 @@ public class Ensambladores extends Trabajador {
     
    
 
-    public Ensambladores (String nombre, Empresa empresa, Semaphore mutex) {
+    public Ensambladores (String nombre, Empresa empresa) {
         super(nombre, empresa);
         
     }
+    
+    public void calcularSalario(){
+        this.salarioTrabajador = 50 * 24 * this.empresa.getDiasSim();
+}
 
-//    @Override
-//    public void run() {
-//        while (true) {
-//            try {
-//                // Adquirir el permiso del semáforo del almacén
-//                System.out.println(this.nombre + " está intentando adquirir el semáforo.");
-//                this.empresa.getAlmacen().adquirirSemaforo();
-//                System.out.println(this.nombre + " ha adquirido el semáforo.");
-//                
-//                // Ensamblar una computadora
-//                if (this.empresa.getAlmacen().getCantidadCPU() >= PARTES_CPU &&
-//                    this.empresa.getAlmacen().getCantidadRAM() >= PARTES_RAM &&
-//                    this.empresa.getAlmacen().getCantidadPlaca() >= PARTES_PLACA &&
-//                    this.empresa.getAlmacen().getCantidadFuente() >= PARTES_FUENTE &&
-//                    (this.empresa.getAlmacen().getCantidadGPU() >= PARTES_GPU || computadorasConTarjetaGrafica < X)) {
-//
-//                    this.empresa.getAlmacen().setCantidadCPU(this.empresa.getAlmacen().getCantidadCPU() - PARTES_CPU);
-//                    this.empresa.getAlmacen().setCantidadRAM(this.empresa.getAlmacen().getCantidadRAM() - PARTES_RAM);
-//                    this.empresa.getAlmacen().setCantidadPlaca(this.empresa.getAlmacen().getCantidadPlaca() - PARTES_PLACA);
-//                    this.empresa.getAlmacen().setCantidadFuente(this.empresa.getAlmacen().getCantidadFuente() - PARTES_FUENTE);
-//
-//                    double precioComputadora;
-//                    if (computadorasConTarjetaGrafica == X) {
-//                        this.empresa.getAlmacen().setCantidadGPU(this.empresa.getAlmacen().getCantidadGPU() - PARTES_GPU);
-//                        computadorasConTarjetaGrafica = 0; // Resetear el contador
-//                        precioComputadora = precioConTarjetaGrafica;
-//                        System.out.println(this.nombre + " ensambló una computadora con tarjeta gráfica.");
-//                        this.mutex.release();
-//                         this.empresa.getAlmacen().liberarSemaforo();
-//                        System.out.println(this.nombre + " ha liberado el semáforo.");
-//                    } else {
-//                        computadorasConTarjetaGrafica++;
-//                        precioComputadora = precioSinTarjetaGrafica;
-//                        System.out.println(this.nombre + " ensambló una computadora sin tarjeta gráfica.");
-//                        this.mutex.release();
-//                         this.empresa.getAlmacen().liberarSemaforo();
-//                        System.out.println(this.nombre + " ha liberado el semáforo.");
-//                    }
-//
-//                    ganancias += precioComputadora;
-//                    contadorComputadoras++;
-//                    System.out.println(this.nombre + " ensambló una computadora. Total ensambladas: " + contadorComputadoras);
-//                    System.out.println("Ganancias totales: $" + ganancias);
-//                    this.mutex.release();
-//                     this.empresa.getAlmacen().liberarSemaforo();
-//                    System.out.println(this.nombre + " ha liberado el semáforo.");
-//                } else {
-//                    System.out.println(this.nombre + " no pudo ensamblar una computadora por falta de componentes.");
-//                    this.mutex.release();
-//                     this.empresa.getAlmacen().liberarSemaforo();
-//                    System.out.println(this.nombre + " ha liberado el semáforo.");
-//                }
-//
-//                sleep(4000); // Dormir por 2 días
-//                
-//
-//                this.salarioTrabajador += this.salarioPorHora * 2 * 24; // Calcular salario por 2 días de trabajo
-//                System.out.println("El salario acumulado de " + this.nombre + " es: $" + this.salarioTrabajador);
-//
-//                sleep(500);
-//
-//            } catch (InterruptedException ex) {
-//                Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//    }
+    @Override
+    public void run() {
+        int X = this.empresa.getxPcGPU();
+        
+        calcularSalario();
+        
+        while (this.empresa.getDiasTranscurridos() < this.empresa.getDiasSim()) {
+            try {
+               
+                
+                // Ensamblar una computadora
+                if (this.empresa.getAlmacen().getCantidadCPU() >= this.empresa.getCantCPUPc() &&
+                    this.empresa.getAlmacen().getCantidadRAM() >= this.empresa.getCantRAMPc() &&
+                    this.empresa.getAlmacen().getCantidadPlaca() >= this.empresa.getCantPlacaPc() &&
+                    this.empresa.getAlmacen().getCantidadFuente() >= this.empresa.getCantFuentePc()) {
+                        if(this.empresa.getAlmacen().getContadorPc() % this.empresa.getxPcGPU() == 0 && this.empresa.getAlmacen().getCantidadGPU() >= this.empresa.getCantGPUPc()){
+                            //eliminamos los componentes necesarios para armas una pc con gpu del almacen
+                            this.empresa.getAlmacen().mutex.acquire();
+                            System.out.println("");
+                            System.out.println(this.nombre + " entro al almacen para agarrar partes para un pc con Gpu!");
+                            this.empresa.getAlmacen().setCantidadCPU(this.empresa.getAlmacen().getCantidadCPU() - this.empresa.getCantCPUPc());
+                            this.empresa.getAlmacen().setCantidadFuente(this.empresa.getAlmacen().getCantidadFuente() - this.empresa.getCantFuentePc());
+                            this.empresa.getAlmacen().setCantidadPlaca(this.empresa.getAlmacen().getCantidadPlaca() - this.empresa.getCantPlacaPc());
+                            this.empresa.getAlmacen().setCantidadRAM(this.empresa.getAlmacen().getCantidadRAM() - this.empresa.getCantRAMPc());
+                            this.empresa.getAlmacen().setCantidadGPU(this.empresa.getAlmacen().getCantidadGPU() - this.empresa.getCantGPUPc());
+                            System.out.println("");
+                            System.out.println(this.nombre + " salio del almacen!");
+                            this.empresa.getAlmacen().mutex.release();
+                            
+                            sleep(this.empresa.getMsPorDia() * 2); 
+                            
+                            
+                            //agregamos pc con gpu al almacen
+                            this.empresa.getAlmacen().mutex.acquire();
+                            System.out.println("");
+                            System.out.println(this.nombre + " entro al almacen para guardar un Pc con Gpu!");
+                            this.empresa.getAlmacen().setCantPcGPU(this.empresa.getAlmacen().getCantPcGPU() + 1);
+                            System.out.println("");
+                            System.out.println(this.nombre + " salio del almacen!");
+                            this.empresa.getAlmacen().mutex.release();
+                            
+                            this.empresa.getAlmacen().setContadorPc(this.empresa.getAlmacen().getContadorPc() + 1);
+                        }else{
+                            //eliminamos los componentes necesarios para armas una pc normal del almacen
+                            this.empresa.getAlmacen().mutex.acquire();
+                            System.out.println("");
+                            System.out.println(this.nombre + " entro al almacen para agarrar partes para un pc normal!");
+                            this.empresa.getAlmacen().setCantidadCPU(this.empresa.getAlmacen().getCantidadCPU() - this.empresa.getCantCPUPc());
+                            this.empresa.getAlmacen().setCantidadFuente(this.empresa.getAlmacen().getCantidadFuente() - this.empresa.getCantFuentePc());
+                            this.empresa.getAlmacen().setCantidadPlaca(this.empresa.getAlmacen().getCantidadPlaca() - this.empresa.getCantPlacaPc());
+                            this.empresa.getAlmacen().setCantidadRAM(this.empresa.getAlmacen().getCantidadRAM() - this.empresa.getCantRAMPc());
+                            System.out.println("");
+                            System.out.println(this.nombre + " salio del almacen!");
+                            this.empresa.getAlmacen().mutex.release();
+                            
+                            sleep(this.empresa.getMsPorDia() * 2); 
+                        
+                            //agregamos pc normal al almacen
+                            this.empresa.getAlmacen().mutex.acquire();
+                            System.out.println("");
+                            System.out.println(this.nombre + " entro al almacen para guardar un Pc normal!");
+                            this.empresa.getAlmacen().setCantPc(this.empresa.getAlmacen().getCantPc() + 1);
+                            System.out.println("");
+                            System.out.println(this.nombre + " salio del almacen!");
+                            this.empresa.getAlmacen().mutex.release();
+                            
+                            this.empresa.getAlmacen().setContadorPc(this.empresa.getAlmacen().getContadorPc() + 1);
+                        }
+                   
+                } else {
+                    System.out.println("No hay los componentes suficientes para armar una pc!");
+                    
+                }
+
+                sleep(2000); // Tiempo entre revisiones del almacen
+                
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        System.out.println("El salario acumulado de "+this.nombre+" es: "+this.salarioTrabajador);
+    }
 }

@@ -28,8 +28,9 @@ public class Empresa {
      private int diasTranscurridos;
      private int diasSim;
      private int msPorDia;
+     private int xPcGPU;
 
-    public Empresa(int nmrTrabajadores, double precioPc, double precioPcGPU, int cantCPUPc, int cantGPUPc, int cantPlacaPc, int cantRAMPc, int cantFuentePc, int msPorDia, int diasParaEntrega ) {
+    public Empresa(int nmrTrabajadores, double precioPc, double precioPcGPU, int cantCPUPc, int cantGPUPc, int cantPlacaPc, int cantRAMPc, int cantFuentePc, int msPorDia, int diasParaEntrega, int xPcGPU, int diasSim ) {
       
         //this.director = director;
         //this.projectManager = projectManager;
@@ -48,8 +49,9 @@ public class Empresa {
         this.cantFuentePc = cantFuentePc;
         this.diasTranscurridos = 0;
         this.diasParaEntrega = diasParaEntrega;
+        this.xPcGPU = xPcGPU;
         
-        this.diasSim = 1;
+        this.diasSim = diasSim;
         this.msPorDia = msPorDia;
     }
     
@@ -65,7 +67,9 @@ public class Empresa {
         System.out.println("El inventario de RAMs final es: " + this.getAlmacen().getCantidadRAM());
         System.out.println("El inventario de GPUs final es: " + this.getAlmacen().getCantidadGPU());
         System.out.println("El inventario de Fuentes final es: " + this.getAlmacen().getCantidadFuente());
-        System.out.println("El inventario de Placas final es: " + this.getAlmacen().getCantidadPlaca());     
+        System.out.println("El inventario de Placas final es: " + this.getAlmacen().getCantidadPlaca());  
+        System.out.println("El inventario de Pc normales final es: " + this.getAlmacen().getCantPc()); 
+        System.out.println("El inventario de Pc con gpu final es: " + this.getAlmacen().getCantPcGPU()); 
     }
     
     //metodo para agregar un trabajador
@@ -126,6 +130,14 @@ public class Empresa {
         this.msPorDia = msPorDia;
     }
 
+    public int getxPcGPU() {
+        return xPcGPU;
+    }
+
+    public void setxPcGPU(int xPcGPU) {
+        this.xPcGPU = xPcGPU;
+    }
+    
     public double getPrecioPcGPU() {
         return precioPcGPU;
     }
