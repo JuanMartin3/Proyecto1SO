@@ -16,7 +16,6 @@ import java.util.logging.Logger;
  */
 public class Trabajador extends Thread{
     protected String nombre; //provisional?
-    protected double salarioPorHora;
     protected int horasTrabajadas;
     protected Empresa empresa;
     protected int tiempoProduccion;
@@ -24,25 +23,16 @@ public class Trabajador extends Thread{
     Semaphore mutex; //semaforo 
     
     //constructor 
-    public Trabajador(String nombre, double salarioPorHora, Empresa empresa, Semaphore mutex){
+    public Trabajador(String nombre, Empresa empresa){
         this.nombre = nombre;
-        this.salarioPorHora = salarioPorHora;
         this.horasTrabajadas = 0; //empieza con 0 horas
         this.salarioTrabajador = 0;
         this.empresa = empresa;
         this.tiempoProduccion = 0;
-        this.mutex = mutex; //semaforo 
+        this.mutex = this.empresa.getAlmacen().mutex; //semaforo 
     }
     
-    //Metodos comunes
-    
-    public double calcularSalario(){
-        return this.horasTrabajadas * this.salarioPorHora;
-    }
-
-    public double getSalarioPorHora() {
-        return salarioPorHora;
-    }
+  
 
     public int getHorasTrabajadas() {
         return horasTrabajadas;
@@ -64,9 +54,7 @@ public class Trabajador extends Thread{
         this.tiempoProduccion = tiempoProduccion;
     }
 
-    public void setSalarioPorHora(double salarioPorHora) {
-        this.salarioPorHora = salarioPorHora;
-    }
+    
 
     public void setHorasTrabajadas(int horasTrabajadas) {
         this.horasTrabajadas = horasTrabajadas;

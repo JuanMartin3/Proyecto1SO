@@ -27,42 +27,33 @@ public class Main {
      */
     public static void main(String[] args) throws InterruptedException {
         
-        double duracionDia = 8500;
         
         //Prueba de trabajadores como hilos
-        Semaphore mutex = new Semaphore(1);
         
-        Empresa msi = new Empresa(4);
+        Empresa msi = new Empresa(4, 1, 3, 4, 5, 6, 7, 8, 24000, 4);
         
-        Productor trabajador1 = new Productor("Jose", 1, 40, msi, mutex);
-        Productor trabajador2 = new Productor("Juan", 2, 40, msi, mutex);
-        Productor trabajador3 = new Productor("David", 3, 40, msi, mutex);
-        Productor trabajador4 = new Productor("Julio", 4, 40, msi, mutex);
-        Productor trabajador5 = new Productor("Alvaro", 5, 40, msi, mutex);
-        ProjectManager pm = new ProjectManager("Juan C.", 40, msi, mutex, 10);
+        Productor trabajador1 = new Productor("Jose", 1, msi);
+        Productor trabajador2 = new Productor("Juan", 2,  msi);
+        Productor trabajador3 = new Productor("David", 3, msi);
+        Productor trabajador4 = new Productor("Julio", 4, msi);
+        Productor trabajador5 = new Productor("Alvaro", 5, msi);
+        ProjectManager pm = new ProjectManager("Juan C.", msi, 10);
         
-        double precioSinTarjetaGrafica = 180000.0;
-        double precioConTarjetaGrafica = 250000.0;
-        Ensambladores ensamblador1 = new Ensambladores("Carlos", 50, msi, mutex, 5, precioSinTarjetaGrafica, precioConTarjetaGrafica);
+        //Ensambladores ensamblador1 = new Ensambladores("Carlos", 50, msi, mutex, 5, precioSinTarjetaGrafica, precioConTarjetaGrafica);
 
        
-        
-        trabajador1.start();
-        trabajador2.start();
-        trabajador3.start();
-        trabajador4.start();
-        trabajador5.start();
+        System.out.println("1");
+//        trabajador1.start();
+//        trabajador2.start();
+//        trabajador3.start();
+//        trabajador4.start();
+//        trabajador5.start();
         pm.start();
-        ensamblador1.start();
+        //ensamblador1.start();
         
-        sleep((long) (duracionDia*2));
-        System.out.println("");
-        System.out.println("*****************************************");
-        System.out.println("El inventario de CPUs final es: " + msi.getAlmacen().getCantidadCPU());
-        System.out.println("El inventario de RAMs final es: " + msi.getAlmacen().getCantidadRAM());
-        System.out.println("El inventario de GPUs final es: " + msi.getAlmacen().getCantidadGPU());
-        System.out.println("El inventario de Fuentes final es: " + msi.getAlmacen().getCantidadFuente());
-        System.out.println("El inventario de Placas final es: " + msi.getAlmacen().getCantidadPlaca());       
+        msi.pasoDeDias();
+        
+           
     }
     
 }

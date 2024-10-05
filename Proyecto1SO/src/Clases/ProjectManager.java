@@ -16,35 +16,33 @@ import java.util.logging.Logger;
 public class ProjectManager extends Trabajador{
     int diasParaEntrega;
     
-    public ProjectManager(String nombre, double salarioPorHora, Empresa empresa, Semaphore mutex, int diasParaEntrega) {
-        super(nombre, salarioPorHora, empresa, mutex);
+    public ProjectManager(String nombre, Empresa empresa, int diasParaEntrega) {
+        super(nombre, empresa);
         
-        this.salarioPorHora = 40;
         this.diasParaEntrega = diasParaEntrega;
     }
     
     @Override
     public void run(){
-        int days = 0;
-        int contadorEntrega = this.diasParaEntrega;
-        int tiempoDia = 0;
+        double horaEnMs = this.empresa.getMsPorDia()/24;
+        double mediaHoraEnMs = horaEnMs/2;
         
-        while(days <= 0) {
+        
+        while(this.empresa.getDiasTranscurridos() < this.empresa.getDiasSim()) {
             try {
-                while(tiempoDia <= 16){
+                diasParaEntrega = this.empresa.getDiasParaEntrega();
+                int hora = 0;
+                
+                while(hora <= 16){
                     System.out.println("");
-                    System.out.println("*****************************************");
                     System.out.println("Project Manager viendo anime!");
-                    System.out.println("*****************************************");
                     System.out.println("");
-                    sleep(100);
+                    sleep((long) mediaHoraEnMs);
                     System.out.println("");
-                    System.out.println("*****************************************");
                     System.out.println("Project Manager viendo trabajando!");
-                    System.out.println("*****************************************");
                     System.out.println("");
-                    sleep(100);
-                    tiempoDia ++;
+                    sleep((long) mediaHoraEnMs);
+                    hora ++;
                 }
                 
                 System.out.println("");
@@ -52,16 +50,17 @@ public class ProjectManager extends Trabajador{
                 System.out.println("Project Manager cambiando contador!");
                 System.out.println("*****************************************");
                 System.out.println("");
-                 sleep(6000);
+                 sleep((long) (horaEnMs * 8));
                  
-                 contadorEntrega --;
+                 diasParaEntrega --;
+                 this.empresa.setDiasParaEntrega(diasParaEntrega);
+                 
                  System.out.println("");
                 System.out.println("*****************************************");
-                System.out.println("Faltan: "+contadorEntrega+" dias para la entega!");
+                System.out.println("Faltan: "+this.empresa.getDiasParaEntrega()+" dias para la entega!");
                 System.out.println("*****************************************");
                 System.out.println("");
                 
-                days++;
                  
             } catch (InterruptedException ex) {
                 Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);

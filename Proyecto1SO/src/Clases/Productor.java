@@ -18,20 +18,27 @@ public class Productor extends Trabajador {
 
     protected int tipo;
 
-    public Productor(String nombre, int tipo, double salarioPorHora, Empresa empresa, Semaphore mutex) {
-        super(nombre, salarioPorHora, empresa, mutex);
+    public Productor(String nombre, int tipo, Empresa empresa) {
+        super(nombre, empresa);
         this.tipo = tipo;
     }
 
+    public void calcularSalario(){
+        switch (this.tipo) {
+            case 1 -> this.salarioTrabajador += 26 * 24 * this.empresa.getDiasSim();
+            case 2 -> this.salarioTrabajador += 40 * 24 * this.empresa.getDiasSim();
+            case 3 -> this.salarioTrabajador += 20 * 24 * this.empresa.getDiasSim();
+            case 4 -> this.salarioTrabajador += 34 * 24 * this.empresa.getDiasSim();
+            default -> this.salarioTrabajador += 16 * 24 * this.empresa.getDiasSim();
+        }
+    }
+    
     @Override
     public void run() {
-        int days = 0;
-        while (days <= 5) {
-            try {
-                // Adquirir el permiso del semáforo del almacén
-                System.out.println(this.nombre + " esta intentando adquirir el semaforo.");
-                this.empresa.getAlmacen().adquirirSemaforo();
-                System.out.println(this.nombre + " ha adquirido el semaforo.");     
+        
+        this.calcularSalario();
+        while (this.empresa.getDiasTranscurridos() < this.empresa.getDiasSim()) {
+            try {  
                 // Código para modificar el inventario
                 int cantCPU = this.empresa.getAlmacen().getCantidadCPU();
                 int newCantCPU = cantCPU + 1;
@@ -47,43 +54,95 @@ public class Productor extends Trabajador {
 
                 int cantFuente = this.empresa.getAlmacen().getCantidadFuente();
                 int newCantFuente = cantFuente + 1;
-
-                this.mutex.acquire();
-
-                this.salarioTrabajador += this.salarioPorHora;
-                System.out.println("El salario acumulado de " + this.nombre + " es: $" + this.salarioTrabajador);
-
+                
+               
+                
+                sleep(6000);
+                
                 if (this.tipo == 1 && this.empresa.getAlmacen().getCantidadCPU() <= this.empresa.getAlmacen().getCapacidadCPU() - 1) {
+                    System.out.println("");
+                    this.empresa.getAlmacen().mutex.acquire();
+                    System.out.println(this.nombre + " entro al almacen!");
+                     sleep(1000);
+                    
                     this.empresa.getAlmacen().setCantidadCPU(newCantCPU);
                     System.out.println(this.nombre + " Agrego 1 CPU al almacen");
+                    
+                     this.empresa.getAlmacen().mutex.release();
+                     System.out.println("");
+                    System.out.println(this.nombre + " salio del almacen!");
+                    
                 } else if (this.tipo == 2 && this.empresa.getAlmacen().getCantidadRAM() <= this.empresa.getAlmacen().getCapacidadRAM() - 1) {
+                    System.out.println("");
+                    this.empresa.getAlmacen().mutex.acquire();
+                    System.out.println(this.nombre + " entro al almacen!");
+                     sleep(1000);
+                    
                     this.empresa.getAlmacen().setCantidadRAM(newCantRAM);
                     System.out.println(this.nombre + " Agrego 1 RAM al almacen");
+                    
+                    this.empresa.getAlmacen().mutex.release();
+                    System.out.println("");
+                    System.out.println(this.nombre + " salio del almacen!");
+                    
                 } else if (this.tipo == 3 && this.empresa.getAlmacen().getCantidadPlaca() <= this.empresa.getAlmacen().getCapacidadPlaca() - 1) {
+                    System.out.println("");
+                    this.empresa.getAlmacen().mutex.acquire();
+                    System.out.println(this.nombre + " entro al almacen!");
+                     sleep(1000);
+                    
                     this.empresa.getAlmacen().setCantidadPlaca(newCantPlaca);
                     System.out.println(this.nombre + " Agrego 1 Placa al almacen");
+                    
+                    this.empresa.getAlmacen().mutex.release();
+                    System.out.println("");
+                    System.out.println(this.nombre + " salio del almacen!");
+                    
                 } else if (this.tipo == 4 && this.empresa.getAlmacen().getCantidadGPU() <= this.empresa.getAlmacen().getCapacidadGPU() - 1) {
+                    System.out.println("");
+                    this.empresa.getAlmacen().mutex.acquire();
+                    System.out.println(this.nombre + " entro al almacen!");
+                     sleep(1000);
+                    
                     this.empresa.getAlmacen().setCantidadGPU(newCantGPU);
                     System.out.println(this.nombre + " Agrego 1 GPU al almacen");
+                    
+                    this.empresa.getAlmacen().mutex.release();
+                    System.out.println("");
+                    System.out.println(this.nombre + " salio del almacen!");
+                    
                 } else if (this.tipo == 5 && this.empresa.getAlmacen().getCantidadFuente() <= this.empresa.getAlmacen().getCapacidadFuente() - 1) {
+                    System.out.println("");
+                    this.empresa.getAlmacen().mutex.acquire();
+                    System.out.println(this.nombre + " entro al almacen!");
+                     sleep(1000);
+                    
                     this.empresa.getAlmacen().setCantidadFuente(newCantFuente);
                     System.out.println(this.nombre + " Agrego 1 Fuente al almacen");
+                    
+                    this.empresa.getAlmacen().mutex.release();
+                    System.out.println("");
+                    System.out.println(this.nombre + " salio del almacen!");
+                    
                 } else {
+                    System.out.println("");
+                    this.empresa.getAlmacen().mutex.acquire();
+                    System.out.println(this.nombre + " entro al almacen!");
+                    
                     System.out.println(this.nombre + " Intento agregar un componente a su almacen, pero esta lleno.");
+                    
+                    this.empresa.getAlmacen().mutex.release();
+                    System.out.println("");
+                    System.out.println(this.nombre + " salio del almacen!");
                 }
-
-                sleep(500);
-
-                this.mutex.release();
-                System.out.println(this.nombre + " ha liberado el semaforo.");
-                this.empresa.getAlmacen().liberarSemaforo(); // Liberar el permiso del semáforo del almacén
-
-                sleep(1000);
-                days++;
+               
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        System.out.println("");
+        System.out.println("**********************************************");
+        System.out.println("El salario de "+ this.nombre +" es: "+this.salarioTrabajador);
     }
 }
