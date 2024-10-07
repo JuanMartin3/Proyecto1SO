@@ -55,15 +55,14 @@ public class Productor extends Trabajador {
                 int cantFuente = this.empresa.getAlmacen().getCantidadFuente();
                 int newCantFuente = cantFuente + 1;
                 
-               
-                
-                sleep(6000);
-                
                 if (this.tipo == 1 && this.empresa.getAlmacen().getCantidadCPU() <= this.empresa.getAlmacen().getCapacidadCPU() - 1) {
+                    
+                    sleep(this.empresa.getMsPorDia() * 4); //Tiempo de produccion CAMBIAR!!!!!!
+                    
                     System.out.println("");
                     this.empresa.getAlmacen().mutex.acquire();
                     System.out.println(this.nombre + " entro al almacen!");
-                     sleep(1000);
+                     sleep(500);
                     
                     this.empresa.getAlmacen().setCantidadCPU(newCantCPU);
                     System.out.println(this.nombre + " Agrego 1 CPU al almacen");
@@ -73,10 +72,13 @@ public class Productor extends Trabajador {
                     System.out.println(this.nombre + " salio del almacen!");
                     
                 } else if (this.tipo == 2 && this.empresa.getAlmacen().getCantidadRAM() <= this.empresa.getAlmacen().getCapacidadRAM() - 1) {
+                    
+                    sleep(this.empresa.getMsPorDia() * 1); //Tiempo de produccion CAMBIAR!!!!!!
+                    
                     System.out.println("");
                     this.empresa.getAlmacen().mutex.acquire();
                     System.out.println(this.nombre + " entro al almacen!");
-                     sleep(1000);
+                     sleep(500);
                     
                     this.empresa.getAlmacen().setCantidadRAM(newCantRAM);
                     System.out.println(this.nombre + " Agrego 1 RAM al almacen");
@@ -86,10 +88,13 @@ public class Productor extends Trabajador {
                     System.out.println(this.nombre + " salio del almacen!");
                     
                 } else if (this.tipo == 3 && this.empresa.getAlmacen().getCantidadPlaca() <= this.empresa.getAlmacen().getCapacidadPlaca() - 1) {
+                    
+                    sleep(this.empresa.getMsPorDia() * 4); //Tiempo de produccion CAMBIAR!!!!!!
+                    
                     System.out.println("");
                     this.empresa.getAlmacen().mutex.acquire();
                     System.out.println(this.nombre + " entro al almacen!");
-                     sleep(1000);
+                     sleep(500);
                     
                     this.empresa.getAlmacen().setCantidadPlaca(newCantPlaca);
                     System.out.println(this.nombre + " Agrego 1 Placa al almacen");
@@ -99,10 +104,13 @@ public class Productor extends Trabajador {
                     System.out.println(this.nombre + " salio del almacen!");
                     
                 } else if (this.tipo == 4 && this.empresa.getAlmacen().getCantidadGPU() <= this.empresa.getAlmacen().getCapacidadGPU() - 1) {
+                    
+                    sleep(this.empresa.getMsPorDia() * 2); //Tiempo de produccion CAMBIAR!!!!!!
+                    
                     System.out.println("");
                     this.empresa.getAlmacen().mutex.acquire();
                     System.out.println(this.nombre + " entro al almacen!");
-                     sleep(1000);
+                     sleep(500);
                     
                     this.empresa.getAlmacen().setCantidadGPU(newCantGPU);
                     System.out.println(this.nombre + " Agrego 1 GPU al almacen");
@@ -112,10 +120,13 @@ public class Productor extends Trabajador {
                     System.out.println(this.nombre + " salio del almacen!");
                     
                 } else if (this.tipo == 5 && this.empresa.getAlmacen().getCantidadFuente() <= this.empresa.getAlmacen().getCapacidadFuente() - 1) {
+                    
+                    sleep(this.empresa.getMsPorDia() * 5); //Tiempo de produccion CAMBIAR!!!!!!
+                    
                     System.out.println("");
                     this.empresa.getAlmacen().mutex.acquire();
                     System.out.println(this.nombre + " entro al almacen!");
-                     sleep(1000);
+                     sleep(500);
                     
                     this.empresa.getAlmacen().setCantidadFuente(newCantFuente);
                     System.out.println(this.nombre + " Agrego 1 Fuente al almacen");
@@ -125,6 +136,7 @@ public class Productor extends Trabajador {
                     System.out.println(this.nombre + " salio del almacen!");
                     
                 } else {
+                    
                     System.out.println("");
                     this.empresa.getAlmacen().mutex.acquire();
                     System.out.println(this.nombre + " entro al almacen!");
@@ -134,6 +146,8 @@ public class Productor extends Trabajador {
                     this.empresa.getAlmacen().mutex.release();
                     System.out.println("");
                     System.out.println(this.nombre + " salio del almacen!");
+                    
+                    sleep(this.empresa.getMsPorDia()); //Espera un poco a que se libere el almacen
                 }
                
 

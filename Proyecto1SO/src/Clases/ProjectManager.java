@@ -16,56 +16,64 @@ import java.util.logging.Logger;
 public class ProjectManager extends Trabajador{
     int diasParaEntrega;
     
-    public ProjectManager(String nombre, Empresa empresa, int diasParaEntrega) {
+    public ProjectManager(String nombre, Empresa empresa) {
         super(nombre, empresa);
         
-        this.diasParaEntrega = diasParaEntrega;
+        this.diasParaEntrega = this.empresa.getDiasParaEntrega();
     }
+    
+      public void calcularSalario(){
+        this.salarioTrabajador = (40 * 24 * this.empresa.getDiasSim()) - this.empresa.getMultaPm();
+}
     
     @Override
     public void run(){
         double horaEnMs = this.empresa.getMsPorDia()/24;
         double mediaHoraEnMs = horaEnMs/2;
         
-        
         while(this.empresa.getDiasTranscurridos() < this.empresa.getDiasSim()) {
             try {
-                diasParaEntrega = this.empresa.getDiasParaEntrega();
                 int hora = 0;
                 
                 while(hora <= 16){
-                    System.out.println("");
-                    System.out.println("Project Manager viendo anime!");
-                    System.out.println("");
+                    this.empresa.setPmAnime( 1);
                     sleep((long) mediaHoraEnMs);
-                    System.out.println("");
-                    System.out.println("Project Manager viendo trabajando!");
-                    System.out.println("");
+                    
+                    this.empresa.setPmAnime( 0);
                     sleep((long) mediaHoraEnMs);
                     hora ++;
                 }
                 
-                System.out.println("");
-                System.out.println("*****************************************");
-                System.out.println("Project Manager cambiando contador!");
-                System.out.println("*****************************************");
-                System.out.println("");
-                 sleep((long) (horaEnMs * 8));
-                 
-                 diasParaEntrega --;
-                 this.empresa.setDiasParaEntrega(diasParaEntrega);
-                 
-                 System.out.println("");
-                System.out.println("*****************************************");
-                System.out.println("Faltan: "+this.empresa.getDiasParaEntrega()+" dias para la entega!");
-                System.out.println("*****************************************");
-                System.out.println("");
-                
+                if(this.empresa.getDiasParaEntrega() > 0){
+                    this.empresa.setPmAnime( 0);
+                    
+                     sleep((long) (horaEnMs * 8));
+
+                     this.empresa.setDiasParaEntrega(this.empresa.getDiasParaEntrega() - 1);
+
+                     System.out.println("");
+                    System.out.println("*****************************************");
+                    System.out.println("Faltan: "+this.empresa.getDiasParaEntrega()+" dias para la entega!");
+                    System.out.println("*****************************************");
+                    System.out.println("");
+                    
+                }else{
+                    this.empresa.setPmAnime( 0);
+                    System.out.println("");
+                    System.out.println("*****************************************");
+                    System.out.println("No cabia el contador porque espera al que el director venda las pc!");
+                    System.out.println("Faltan: "+this.empresa.getDiasParaEntrega()+" dias para la entega!");
+                    System.out.println("*****************************************");
+                    System.out.println("");
+                    sleep((long) (horaEnMs * 8));
+                }
                  
             } catch (InterruptedException ex) {
                 Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+         calcularSalario();
         
     }
 }

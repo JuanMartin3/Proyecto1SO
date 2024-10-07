@@ -29,6 +29,8 @@ public class Empresa {
      private int diasSim;
      private int msPorDia;
      private int xPcGPU;
+     private int pmAnime;
+     private int multaPm;
 
     public Empresa(int nmrTrabajadores, double precioPc, double precioPcGPU, int cantCPUPc, int cantGPUPc, int cantPlacaPc, int cantRAMPc, int cantFuentePc, int msPorDia, int diasParaEntrega, int xPcGPU, int diasSim ) {
       
@@ -50,6 +52,9 @@ public class Empresa {
         this.diasTranscurridos = 0;
         this.diasParaEntrega = diasParaEntrega;
         this.xPcGPU = xPcGPU;
+        
+        this.pmAnime = 0;
+        this.multaPm = 0;
         
         this.diasSim = diasSim;
         this.msPorDia = msPorDia;
@@ -110,6 +115,14 @@ public class Empresa {
         return nmrTrabajadores;
     }
 
+    public int getPmAnime() {
+        return pmAnime;
+    }
+
+    public void setPmAnime(int pmAnime) {
+        this.pmAnime = pmAnime;
+    }
+    
     public void setNmrTrabajadores(int nmrTrabajadores) {
         this.nmrTrabajadores = nmrTrabajadores;
     }
@@ -132,6 +145,14 @@ public class Empresa {
 
     public int getxPcGPU() {
         return xPcGPU;
+    }
+
+    public int getMultaPm() {
+        return multaPm;
+    }
+
+    public void setMultaPm(int multaPm) {
+        this.multaPm = multaPm;
     }
 
     public void setxPcGPU(int xPcGPU) {
