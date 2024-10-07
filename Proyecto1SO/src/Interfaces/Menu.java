@@ -4,6 +4,14 @@
  */
 package Interfaces;
 
+import Clases.Administrador;
+import Clases.Empresa;
+import Clases.Ensambladores;
+import Clases.Productor;
+import Clases.ProjectManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Windows 10
@@ -15,6 +23,8 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -88,7 +98,36 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CorrerSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorrerSimulacionActionPerformed
-        // TODO add your handling code here:
+        Empresa msi = new Empresa(4, 100, 300, 4, 5, 6, 7, 8, 4000, 6, 5, 10);
+        
+        Productor trabajador1 = new Productor("Jose", 1, msi);
+        Productor trabajador2 = new Productor("Juan", 2,  msi);
+        Productor trabajador3 = new Productor("David", 3, msi);
+        Productor trabajador4 = new Productor("Julio", 4, msi);
+        Productor trabajador5 = new Productor("Alvaro", 5, msi);
+        
+        ProjectManager pm = new ProjectManager("Juan C.", msi);
+        
+        Ensambladores ensamblador1 = new Ensambladores("Carlos", msi);
+        
+        Administrador admin = new Administrador("Jose", msi);
+
+       
+        System.out.println("1");
+        trabajador1.start();
+        trabajador2.start();
+        trabajador3.start();
+        trabajador4.start();
+        trabajador5.start();
+        pm.start();
+        ensamblador1.start();
+        admin.start();
+        
+        try {
+            msi.pasoDeDias();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_CorrerSimulacionActionPerformed
 
     /**
