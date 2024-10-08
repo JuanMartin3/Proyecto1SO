@@ -61,7 +61,7 @@ public class ProjectManager extends Trabajador{
                     this.empresa.setPmAnime( 0);
                     System.out.println("");
                     System.out.println("*****************************************");
-                    System.out.println("No cabia el contador porque espera al que el director venda las pc!");
+                    System.out.println("No cambia el contador porque espera al que el director venda las pc!");
                     System.out.println("Faltan: "+this.empresa.getDiasParaEntrega()+" dias para la entega!");
                     System.out.println("*****************************************");
                     System.out.println("");
