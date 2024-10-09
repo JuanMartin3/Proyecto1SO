@@ -5,6 +5,7 @@
 package Interfaces;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -110,11 +111,11 @@ public class Grafico extends javax.swing.JFrame {
         
         DefaultCategoryDataset datos = new DefaultCategoryDataset();
     
-        datos.setValue(70,"Utilidad","MSI");
-        datos.setValue(15,"Utilidad","Apple");
+        datos.setValue(1000,"Utilidad","MSI");    //msi.getutilidad()
+        datos.setValue(1250,"Utilidad","Apple");  //apple.getutilidad()
     
     
-        JFreeChart grafico_barras = ChartFactory.createBarChart3D("Utilidad por día","Empresas","Utilidad",datos,PlotOrientation.VERTICAL,true,true,false);
+        JFreeChart grafico_barras = ChartFactory.createBarChart3D("Utilidad por Empresa","Empresas","Utilidad en $",datos,PlotOrientation.VERTICAL,true,true,false);
     
         ChartPanel panel = new ChartPanel(grafico_barras);
         panel.setMouseWheelEnabled(true);

@@ -107,6 +107,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        Parametros newframe = new Parametros();
+        
+        newframe.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CorrerSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorrerSimulacionActionPerformed
@@ -125,7 +131,8 @@ public class Menu extends javax.swing.JFrame {
         Administrador admin = new Administrador("Jose", msi);
 
        
-        System.out.println("1");
+        System.out.println("Inicio de la Simulación");
+        
         trabajador1.start();
         trabajador2.start();
         trabajador3.start();
