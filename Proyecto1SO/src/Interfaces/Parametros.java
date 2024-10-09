@@ -4,6 +4,11 @@
  */
 package Interfaces;
 
+import java.io.*;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+
+
 /**
  *
  * @author danie
@@ -48,17 +53,18 @@ public class Parametros extends javax.swing.JFrame {
         jSpinner14 = new javax.swing.JSpinner();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jSpinner15 = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 150, 60, 20));
-        jPanel1.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 200, 60, 20));
-        jPanel1.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 60, 20));
-        jPanel1.add(jSpinner4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 335, 60, 20));
-        jPanel1.add(jSpinner5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 400, 60, 20));
-        jPanel1.add(jSpinner6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 455, 60, 20));
+        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 170, 60, 20));
+        jPanel1.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 225, 60, 20));
+        jPanel1.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 280, 60, 20));
+        jPanel1.add(jSpinner4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 350, 60, 20));
+        jPanel1.add(jSpinner5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 60, 20));
+        jPanel1.add(jSpinner6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 475, 60, 20));
 
         jButton1.setText("Cargar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -66,10 +72,15 @@ public class Parametros extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 500, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 540, -1, -1));
 
         jButton2.setText("Guardar");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 500, -1, -1));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 540, -1, -1));
 
         jButton3.setText("Volver");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -78,29 +89,50 @@ public class Parametros extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 550, -1, -1));
-        jPanel1.add(jSpinner7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 60, 20));
-        jPanel1.add(jSpinner8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 60, 20));
-        jPanel1.add(jSpinner9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 60, 20));
-        jPanel1.add(jSpinner10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 335, 60, 20));
-        jPanel1.add(jSpinner11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 60, 20));
-        jPanel1.add(jSpinner12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 455, 60, 20));
+        jPanel1.add(jSpinner7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 60, 20));
+        jPanel1.add(jSpinner8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 225, 60, 20));
+        jPanel1.add(jSpinner9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 60, 20));
+        jPanel1.add(jSpinner10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 60, 20));
+        jPanel1.add(jSpinner11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 60, 20));
+        jPanel1.add(jSpinner12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 475, 60, 20));
 
         jButton4.setText("Guardar");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, -1, -1));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 540, -1, -1));
 
         jButton5.setText("Cargar");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, -1, -1));
-        jPanel1.add(jSpinner13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 60, 20));
-        jPanel1.add(jSpinner14, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 60, 20));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, -1, -1));
+        jPanel1.add(jSpinner13, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 60, 20));
+        jPanel1.add(jSpinner14, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 90, 60, 20));
         jSpinner14.getAccessibleContext().setAccessibleName("");
 
         jButton6.setText("Cargar");
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 70, -1, -1));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, -1, -1));
 
         jButton7.setText("Guardar");
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, -1, -1));
+        jPanel1.add(jSpinner15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 60, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Parametros listo.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Parametros 3.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,7 +150,39 @@ public class Parametros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: APPLE C
+    try {
+        BufferedReader reader = new BufferedReader(new FileReader("APPLE.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] partes = line.split("=");
+            if (partes[0].equals("Productor Placa")) {
+                int productorPlaca = Integer.parseInt(partes[1]);
+                jSpinner1.setValue(productorPlaca);
+            } else if (partes[0].equals("Productor CPU")) {
+                int productorCPU = Integer.parseInt(partes[1]);
+                jSpinner2.setValue(productorCPU);
+            } else if (partes[0].equals("Productor RAM")) {
+                int productorRAM = Integer.parseInt(partes[1]);
+                jSpinner3.setValue(productorRAM);
+            } else if (partes[0].equals("Productor Fuente")) {
+                int productorFuente = Integer.parseInt(partes[1]);
+                jSpinner4.setValue(productorFuente);
+            } else if (partes[0].equals("Productor GPU")) {
+                int productorGPU = Integer.parseInt(partes[1]);
+                jSpinner5.setValue(productorGPU);
+            } else if (partes[0].equals("Ensamblador")) {
+                int ensamblador = Integer.parseInt(partes[1]);
+                jSpinner6.setValue(ensamblador);
+            }
+        }
+        reader.close();
+        System.out.println("Datos cargados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al cargar los datos.");
+    }
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -130,6 +194,124 @@ public class Parametros extends javax.swing.JFrame {
         
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here: Tiempo
+        try {
+        FileWriter writer = new FileWriter("Tiempo.txt");
+        writer.write("Segundos por día=" + jSpinner14.getValue() + "\n");
+        writer.write("Deadline Day=" + jSpinner13.getValue() + "\n");
+        writer.write("Dias Simulación=" + jSpinner15.getValue() + "\n");
+        writer.close();
+        System.out.println("Datos guardados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al guardar los datos.");
+    }
+
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here: Tiempo
+       try {
+        BufferedReader reader = new BufferedReader(new FileReader("Tiempo.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] partes = line.split("=");
+            if (partes[0].equals("Segundos por día")) {
+                int diasEnSegundos = Integer.parseInt(partes[1]);
+                jSpinner14.setValue(diasEnSegundos);
+            } else if (partes[0].equals("Deadline Day")) {
+                int deadlineDay = Integer.parseInt(partes[1]);
+                jSpinner13.setValue(deadlineDay);
+            } else if (partes[0].equals("Dias Simulación")) {
+                int diasSim = Integer.parseInt(partes[1]);
+                jSpinner15.setValue(diasSim);
+            }
+        }
+        reader.close();
+        System.out.println("Datos cargados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al cargar los datos.");
+    }
+
+    
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:  MSI G
+        try {
+        FileWriter writer = new FileWriter("MSI.txt");
+        writer.write("Productor Placa=" + jSpinner7.getValue() + "\n");
+        writer.write("Productor CPU=" + jSpinner8.getValue() + "\n");
+        writer.write("Productor RAM=" + jSpinner9.getValue() + "\n");
+        writer.write("Productor Fuente=" + jSpinner10.getValue() + "\n");
+        writer.write("Productor GPU=" + jSpinner11.getValue() + "\n");
+        writer.write("Ensamblador=" + jSpinner12.getValue() + "\n");
+        writer.close();
+        System.out.println("Datos guardados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al guardar los datos.");
+    
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here: MSI C
+        try {
+        BufferedReader reader = new BufferedReader(new FileReader("MSI.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] partes = line.split("=");
+            if (partes[0].equals("Productor Placa")) {
+                int productorPlaca = Integer.parseInt(partes[1]);
+                jSpinner7.setValue(productorPlaca);
+            } else if (partes[0].equals("Productor CPU")) {
+                int productorCPU = Integer.parseInt(partes[1]);
+                jSpinner8.setValue(productorCPU);
+            } else if (partes[0].equals("Productor RAM")) {
+                int productorRAM = Integer.parseInt(partes[1]);
+                jSpinner9.setValue(productorRAM);
+            } else if (partes[0].equals("Productor Fuente")) {
+                int productorFuente = Integer.parseInt(partes[1]);
+                jSpinner10.setValue(productorFuente);
+            } else if (partes[0].equals("Productor GPU")) {
+                int productorGPU = Integer.parseInt(partes[1]);
+                jSpinner11.setValue(productorGPU);
+            } else if (partes[0].equals("Ensamblador")) {
+                int ensamblador = Integer.parseInt(partes[1]);
+                jSpinner12.setValue(ensamblador);
+            }
+        }
+        reader.close();
+        System.out.println("Datos cargados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al cargar los datos.");
+    }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here: APPLE G
+        try {
+        FileWriter writer = new FileWriter("APPLE.txt");
+        writer.write("Productor Placa=" + jSpinner1.getValue() + "\n");
+        writer.write("Productor CPU=" + jSpinner2.getValue() + "\n");
+        writer.write("Productor RAM=" + jSpinner3.getValue() + "\n");
+        writer.write("Productor Fuente=" + jSpinner4.getValue() + "\n");
+        writer.write("Productor GPU=" + jSpinner5.getValue() + "\n");
+        writer.write("Ensamblador=" + jSpinner6.getValue() + "\n");
+        writer.close();
+        System.out.println("Datos guardados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al guardar los datos.");
+    
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,6 +364,7 @@ public class Parametros extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner12;
     private javax.swing.JSpinner jSpinner13;
     private javax.swing.JSpinner jSpinner14;
+    private javax.swing.JSpinner jSpinner15;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner4;

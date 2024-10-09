@@ -1,0 +1,6 @@
+Productor Placa=3
+Productor CPU=3
+Productor RAM=3
+Productor Fuente=3
+Productor GPU=3
+Ensamblador=2

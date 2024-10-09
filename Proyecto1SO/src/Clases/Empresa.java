@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Clases;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import static java.lang.Thread.sleep;
 /**
  *
@@ -31,6 +34,18 @@ public class Empresa {
      private int xPcGPU;
      private int pmAnime;
      private int multaPm;
+     
+     
+     //Trabajadores
+     private int cantproductorPlaca;
+     private int cantproductorCPU;
+     private int cantproductorRAM;
+     private int cantproductorFuente;
+     private int cantproductorGPU;
+     private int cantensamblador;
+             
+     
+     
 
     public Empresa(int nmrTrabajadores, double precioPc, double precioPcGPU, int cantCPUPc, int cantGPUPc, int cantPlacaPc, int cantRAMPc, int cantFuentePc, int msPorDia, int diasParaEntrega, int xPcGPU, int diasSim ) {
       
@@ -59,6 +74,86 @@ public class Empresa {
         this.diasSim = diasSim;
         this.msPorDia = msPorDia;
     }
+    
+    //Método para cargar los datos del TXT a la simulación
+    public void cargarTiempo(){
+        try {
+        BufferedReader reader = new BufferedReader(new FileReader("Tiempo.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] partes = line.split("=");
+            if (partes[0].equals("Segundos por día")) {
+                this.msPorDia = Integer.parseInt(partes[1])*1000;
+            } else if (partes[0].equals("Deadline Day")) {
+                this.diasParaEntrega = Integer.parseInt(partes[1]);
+            } else if (partes[0].equals("Dias Simulación")) {
+                this.diasSim = Integer.parseInt(partes[1]);
+            }
+        }
+        reader.close();
+        System.out.println("Datos cargados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al cargar los datos.");
+    }
+    }
+    
+    public void cargarApple(){
+        try {
+        BufferedReader reader = new BufferedReader(new FileReader("Apple.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] partes = line.split("=");
+            if (partes[0].equals("Productor Placa")) {
+                cantproductorPlaca = Integer.parseInt(partes[1]);
+            } else if (partes[0].equals("Productor CPU")) {
+                cantproductorCPU = Integer.parseInt(partes[1]);
+            } else if (partes[0].equals("Productor RAM")) {
+                cantproductorRAM = Integer.parseInt(partes[1]);
+            } else if (partes[0].equals("Productor Fuente")) {
+                cantproductorFuente = Integer.parseInt(partes[1]);
+            } else if (partes[0].equals("Productor GPU")) {
+                cantproductorGPU = Integer.parseInt(partes[1]);
+            } else if (partes[0].equals("Ensamblador")) {
+                cantensamblador = Integer.parseInt(partes[1]);
+            }
+        }
+        reader.close();
+        System.out.println("Datos cargados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al cargar los datos.");
+    }
+    }
+    
+    public void cargarMSI(){
+        try {
+        BufferedReader reader = new BufferedReader(new FileReader("MSI.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] partes = line.split("=");
+            if (partes[0].equals("Productor Placa")) {
+                cantproductorPlaca = Integer.parseInt(partes[1]);
+            } else if (partes[0].equals("Productor CPU")) {
+                cantproductorCPU = Integer.parseInt(partes[1]);
+            } else if (partes[0].equals("Productor RAM")) {
+                cantproductorRAM = Integer.parseInt(partes[1]);
+            } else if (partes[0].equals("Productor Fuente")) {
+                cantproductorFuente = Integer.parseInt(partes[1]);
+            } else if (partes[0].equals("Productor GPU")) {
+                cantproductorGPU = Integer.parseInt(partes[1]);
+            } else if (partes[0].equals("Ensamblador")) {
+                cantensamblador = Integer.parseInt(partes[1]);
+            }
+        }
+        reader.close();
+        System.out.println("Datos cargados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al cargar los datos.");
+    }
+    }
+   
     
     public void pasoDeDias() throws InterruptedException{
         while(diasTranscurridos < this.diasSim){

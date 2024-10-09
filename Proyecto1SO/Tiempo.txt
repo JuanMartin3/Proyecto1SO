@@ -1,0 +1,3 @@
+Segundos por día=60
+Deadline Day=5
+Dias Simulación=10
