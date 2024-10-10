@@ -23,8 +23,7 @@ public class Trabajador extends Thread{
     Semaphore mutex; //semaforo 
     
     //constructor 
-    public Trabajador(String nombre, Empresa empresa){
-        this.nombre = nombre;
+    public Trabajador(Empresa empresa){
         this.horasTrabajadas = 0; //empieza con 0 horas
         this.salarioTrabajador = 0;
         this.empresa = empresa;

@@ -34,11 +34,11 @@ public class Almacen {
     
     //constructor
     public Almacen(){
-        this.cantidadPlaca = 10;
-        this.cantidadCPU = 10;
-        this.cantidadRAM = 10;
-        this.cantidadFuente = 10;
-        this.cantidadGPU = 10;
+        this.cantidadPlaca = 0;
+        this.cantidadCPU = 0;
+        this.cantidadRAM = 0;
+        this.cantidadFuente = 0;
+        this.cantidadGPU = 0;
         this.capacidadPlaca = 25;
         this.capacidadCPU = 20;
         this.capacidadRAM = 55;

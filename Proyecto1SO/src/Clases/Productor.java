@@ -18,8 +18,8 @@ public class Productor extends Trabajador {
 
     protected int tipo;
 
-    public Productor(String nombre, int tipo, Empresa empresa) {
-        super(nombre, empresa);
+    public Productor(int tipo, Empresa empresa) {
+        super(empresa);
         this.tipo = tipo;
     }
 
@@ -31,6 +31,7 @@ public class Productor extends Trabajador {
             case 4 -> this.salarioTrabajador += 34 * 24 * this.empresa.getDiasSim();
             default -> this.salarioTrabajador += 16 * 24 * this.empresa.getDiasSim();
         }
+        this.empresa.setCostoOperativo(this.empresa.getCostoOperativo() + this.salarioTrabajador);
     }
     
     @Override
@@ -57,12 +58,12 @@ public class Productor extends Trabajador {
                 
                 if (this.tipo == 1 && this.empresa.getAlmacen().getCantidadCPU() <= this.empresa.getAlmacen().getCapacidadCPU() - 1) {
                     
-                    sleep(this.empresa.getMsPorDia() * 4); //Tiempo de produccion CAMBIAR!!!!!!
+                    sleep(this.empresa.getMsPorDia() * this.empresa.getDiasProdCPU()); //Tiempo de produccion CAMBIAR!!!!!!
                     
                     System.out.println("");
                     this.empresa.getAlmacen().mutex.acquire();
                     System.out.println(this.nombre + " entro al almacen!");
-                     sleep(500);
+                     
                     
                     this.empresa.getAlmacen().setCantidadCPU(newCantCPU);
                     System.out.println(this.nombre + " Agrego 1 CPU al almacen");
@@ -73,12 +74,12 @@ public class Productor extends Trabajador {
                     
                 } else if (this.tipo == 2 && this.empresa.getAlmacen().getCantidadRAM() <= this.empresa.getAlmacen().getCapacidadRAM() - 1) {
                     
-                    sleep(this.empresa.getMsPorDia() * 1); //Tiempo de produccion CAMBIAR!!!!!!
+                    sleep((long) (this.empresa.getMsPorDia() * this.empresa.getDiasProdRAM())); //Tiempo de produccion CAMBIAR!!!!!!
                     
                     System.out.println("");
                     this.empresa.getAlmacen().mutex.acquire();
                     System.out.println(this.nombre + " entro al almacen!");
-                     sleep(500);
+                     
                     
                     this.empresa.getAlmacen().setCantidadRAM(newCantRAM);
                     System.out.println(this.nombre + " Agrego 1 RAM al almacen");
@@ -89,12 +90,12 @@ public class Productor extends Trabajador {
                     
                 } else if (this.tipo == 3 && this.empresa.getAlmacen().getCantidadPlaca() <= this.empresa.getAlmacen().getCapacidadPlaca() - 1) {
                     
-                    sleep(this.empresa.getMsPorDia() * 4); //Tiempo de produccion CAMBIAR!!!!!!
+                    sleep(this.empresa.getMsPorDia() * this.empresa.getDiasProdPlaca()); //Tiempo de produccion CAMBIAR!!!!!!
                     
                     System.out.println("");
                     this.empresa.getAlmacen().mutex.acquire();
                     System.out.println(this.nombre + " entro al almacen!");
-                     sleep(500);
+                     
                     
                     this.empresa.getAlmacen().setCantidadPlaca(newCantPlaca);
                     System.out.println(this.nombre + " Agrego 1 Placa al almacen");
@@ -105,12 +106,12 @@ public class Productor extends Trabajador {
                     
                 } else if (this.tipo == 4 && this.empresa.getAlmacen().getCantidadGPU() <= this.empresa.getAlmacen().getCapacidadGPU() - 1) {
                     
-                    sleep(this.empresa.getMsPorDia() * 2); //Tiempo de produccion CAMBIAR!!!!!!
+                    sleep(this.empresa.getMsPorDia() * this.empresa.getDiasProdGPU()); //Tiempo de produccion CAMBIAR!!!!!!
                     
                     System.out.println("");
                     this.empresa.getAlmacen().mutex.acquire();
                     System.out.println(this.nombre + " entro al almacen!");
-                     sleep(500);
+                
                     
                     this.empresa.getAlmacen().setCantidadGPU(newCantGPU);
                     System.out.println(this.nombre + " Agrego 1 GPU al almacen");
@@ -121,12 +122,12 @@ public class Productor extends Trabajador {
                     
                 } else if (this.tipo == 5 && this.empresa.getAlmacen().getCantidadFuente() <= this.empresa.getAlmacen().getCapacidadFuente() - 1) {
                     
-                    sleep(this.empresa.getMsPorDia() * 5); //Tiempo de produccion CAMBIAR!!!!!!
+                    sleep((long) (this.empresa.getMsPorDia() * this.empresa.getDiasProdFuente())); //Tiempo de produccion CAMBIAR!!!!!!
                     
                     System.out.println("");
                     this.empresa.getAlmacen().mutex.acquire();
                     System.out.println(this.nombre + " entro al almacen!");
-                     sleep(500);
+                  
                     
                     this.empresa.getAlmacen().setCantidadFuente(newCantFuente);
                     System.out.println(this.nombre + " Agrego 1 Fuente al almacen");
@@ -155,8 +156,5 @@ public class Productor extends Trabajador {
                 Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println("");
-        System.out.println("**********************************************");
-        System.out.println("El salario de "+ this.nombre +" es: "+this.salarioTrabajador);
     }
 }

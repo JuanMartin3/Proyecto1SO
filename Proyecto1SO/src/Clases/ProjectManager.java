@@ -16,14 +16,15 @@ import java.util.logging.Logger;
 public class ProjectManager extends Trabajador{
     int diasParaEntrega;
     
-    public ProjectManager(String nombre, Empresa empresa) {
-        super(nombre, empresa);
+    public ProjectManager(Empresa empresa) {
+        super(empresa);
         
         this.diasParaEntrega = this.empresa.getDiasParaEntrega();
     }
     
       public void calcularSalario(){
         this.salarioTrabajador = (40 * 24 * this.empresa.getDiasSim()) - this.empresa.getMultaPm();
+        this.empresa.setCostoOperativo(this.empresa.getCostoOperativo() + this.salarioTrabajador);
 }
     
     @Override
@@ -71,9 +72,18 @@ public class ProjectManager extends Trabajador{
             } catch (InterruptedException ex) {
                 Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            this.empresa.setDiasTranscurridos(this.empresa.getDiasTranscurridos() + 1);
         }
         
+         this.empresa.calcularUtilidad();
          calcularSalario();
+        
+        try {
+            sleep(15000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ProjectManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 }

@@ -15,6 +15,7 @@ public class Empresa {
      //private Trabajador director;
      //private Trabajador projectManager;
      //private Trabajador[] trabajadores;
+    private String nombre;
      private int nmrTrabajadores;
      private Almacen almacen;
      private double gananciasBrutas;
@@ -35,6 +36,12 @@ public class Empresa {
      private int pmAnime;
      private int multaPm;
      
+     //Tiempos de produccion
+     private int diasProdCPU;
+     private double diasProdRAM;
+     private int diasProdPlaca;
+     private double diasProdFuente;
+     private int diasProdGPU;
      
      //Trabajadores
      private int cantproductorPlaca;
@@ -43,16 +50,22 @@ public class Empresa {
      private int cantproductorFuente;
      private int cantproductorGPU;
      private int cantensamblador;
-             
+     
+     private Productor[] productoresCPU;
+     private Productor[] productoresGPU;
+     private Productor[] productoresRAM;
+     private Productor[] productoresPlaca;
+     private Productor[] productoresFuente;
+     private Ensambladores[] ensambladores;      
      
      
 
-    public Empresa(int nmrTrabajadores, double precioPc, double precioPcGPU, int cantCPUPc, int cantGPUPc, int cantPlacaPc, int cantRAMPc, int cantFuentePc, int msPorDia, int diasParaEntrega, int xPcGPU, int diasSim ) {
+    public Empresa(String nombre, double precioPc, double precioPcGPU, int cantCPUPc, int cantGPUPc, int cantPlacaPc, int cantRAMPc, int cantFuentePc, int xPcGPU, int diasProdCPU, double diasProdRAM, int diasProdPlaca, double diasProdFuente, int diasProdGPU) {
       
         //this.director = director;
         //this.projectManager = projectManager;
-        this.nmrTrabajadores = nmrTrabajadores;
         //this.trabajadores = new Trabajador[nmrTrabajadores];
+        this.nombre = nombre;
         this.almacen = new Almacen();
         this.gananciasBrutas = 0;
         this.costoOperativo = 0;
@@ -65,14 +78,88 @@ public class Empresa {
         this.cantRAMPc = cantRAMPc;
         this.cantFuentePc = cantFuentePc;
         this.diasTranscurridos = 0;
-        this.diasParaEntrega = diasParaEntrega;
+        this.diasParaEntrega = 0;
         this.xPcGPU = xPcGPU;
         
         this.pmAnime = 0;
         this.multaPm = 0;
         
-        this.diasSim = diasSim;
-        this.msPorDia = msPorDia;
+        this.productoresCPU = new Productor[1000];
+        this.productoresGPU = new Productor[1000];
+        this.productoresRAM = new Productor[1000];
+        this.productoresFuente = new Productor[1000];
+        this.productoresPlaca = new Productor[1000];
+        this.ensambladores = new Ensambladores[1000];
+        
+        this.diasSim = 0;
+        this.msPorDia = 0;
+        this.cantproductorPlaca = 0;
+        this.cantproductorCPU = 0;
+        this.cantproductorRAM = 0;
+        this.cantproductorFuente = 0;
+        this.cantproductorGPU = 0;
+        this.cantensamblador= 0;
+        
+        this.diasProdCPU = diasProdCPU;
+        this.diasProdFuente = diasProdFuente;
+        this.diasProdGPU = diasProdGPU;
+        this.diasProdRAM = diasProdRAM;
+        this.diasProdPlaca = diasProdPlaca;
+        
+    }
+    
+     public void crearProdCPU(){
+        
+        for(int i = 0; i< this.cantproductorCPU; i++){
+            Productor productor = new Productor(1,this);
+            productor.start();
+            productoresCPU[i] = productor;
+        }
+    }
+     
+     public void crearProdRAM(){
+        
+        for(int i = 0; i< this.cantproductorRAM; i++){
+            Productor productor = new Productor(2,this);
+            productor.start();
+            productoresRAM[i] = productor;
+        }
+    }
+     
+     public void crearProdGPU(){
+        
+        for(int i = 0; i< this.cantproductorGPU; i++){
+            Productor productor = new Productor(4,this);
+            productor.start();
+            productoresGPU[i] = productor;
+        }
+    }
+     
+     public void crearProdPlaca(){
+        
+        for(int i = 0; i< this.cantproductorPlaca; i++){
+            Productor productor = new Productor(3,this);
+            productor.start();
+            productoresPlaca[i] = productor;
+        }
+    }
+     
+     public void crearProdFuente(){
+        
+        for(int i = 0; i< this.cantproductorFuente; i++){
+            Productor productor = new Productor(5,this);
+            productor.start();
+            productoresFuente[i] = productor;
+        }
+    }
+    
+    public void crearEnsamblador(){
+     for(int i = 0; i< this.cantensamblador; i++){
+            Ensambladores ensamblador = new Ensambladores(this);
+            ensamblador.start();
+            ensambladores[i] = ensamblador;
+        }
+    
     }
     
     //Método para cargar los datos del TXT a la simulación
@@ -178,8 +265,8 @@ public class Empresa {
     }
     
    //metodo para calcular utilidad
-    public void calcularUtilidad(double costo, double ganancia){
-        this.utilidadEstudio += ganancia - costo;
+    public void calcularUtilidad(){
+        this.utilidadEstudio += this.gananciasBrutas - this.costoOperativo;
     }
 
 //    public Trabajador getDirector() {
@@ -212,6 +299,154 @@ public class Empresa {
 
     public int getPmAnime() {
         return pmAnime;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getDiasProdCPU() {
+        return diasProdCPU;
+    }
+
+    public void setDiasProdCPU(int diasProdCPU) {
+        this.diasProdCPU = diasProdCPU;
+    }
+
+    public double getDiasProdRAM() {
+        return diasProdRAM;
+    }
+
+    public void setDiasProdRAM(double diasProdRAM) {
+        this.diasProdRAM = diasProdRAM;
+    }
+
+    public int getDiasProdPlaca() {
+        return diasProdPlaca;
+    }
+
+    public void setDiasProdPlaca(int diasProdPlaca) {
+        this.diasProdPlaca = diasProdPlaca;
+    }
+
+    public double getDiasProdFuente() {
+        return diasProdFuente;
+    }
+
+    public void setDiasProdFuente(double diasProdFuente) {
+        this.diasProdFuente = diasProdFuente;
+    }
+
+    public int getDiasProdGPU() {
+        return diasProdGPU;
+    }
+
+    public void setDiasProdGPU(int diasProdGPU) {
+        this.diasProdGPU = diasProdGPU;
+    }
+    
+    
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCantproductorPlaca() {
+        return cantproductorPlaca;
+    }
+
+    public void setCantproductorPlaca(int cantproductorPlaca) {
+        this.cantproductorPlaca = cantproductorPlaca;
+    }
+
+    public int getCantproductorCPU() {
+        return cantproductorCPU;
+    }
+
+    public void setCantproductorCPU(int cantproductorCPU) {
+        this.cantproductorCPU = cantproductorCPU;
+    }
+
+    public int getCantproductorRAM() {
+        return cantproductorRAM;
+    }
+
+    public void setCantproductorRAM(int cantproductorRAM) {
+        this.cantproductorRAM = cantproductorRAM;
+    }
+
+    public int getCantproductorFuente() {
+        return cantproductorFuente;
+    }
+
+    public void setCantproductorFuente(int cantproductorFuente) {
+        this.cantproductorFuente = cantproductorFuente;
+    }
+
+    public int getCantproductorGPU() {
+        return cantproductorGPU;
+    }
+
+    public void setCantproductorGPU(int cantproductorGPU) {
+        this.cantproductorGPU = cantproductorGPU;
+    }
+
+    public int getCantensamblador() {
+        return cantensamblador;
+    }
+
+    public void setCantensamblador(int cantensamblador) {
+        this.cantensamblador = cantensamblador;
+    }
+
+    public Productor[] getProductoresCPU() {
+        return productoresCPU;
+    }
+
+    public void setProductoresCPU(Productor[] productoresCPU) {
+        this.productoresCPU = productoresCPU;
+    }
+
+    public Productor[] getProductoresGPU() {
+        return productoresGPU;
+    }
+
+    public void setProductoresGPU(Productor[] productoresGPU) {
+        this.productoresGPU = productoresGPU;
+    }
+
+    public Productor[] getProductoresRAM() {
+        return productoresRAM;
+    }
+
+    public void setProductoresRAM(Productor[] productoresRAM) {
+        this.productoresRAM = productoresRAM;
+    }
+
+    public Productor[] getProductoresPlaca() {
+        return productoresPlaca;
+    }
+
+    public void setProductoresPlaca(Productor[] productoresPlaca) {
+        this.productoresPlaca = productoresPlaca;
+    }
+
+    public Productor[] getProductoresFuente() {
+        return productoresFuente;
+    }
+
+    public void setProductoresFuente(Productor[] productoresFuente) {
+        this.productoresFuente = productoresFuente;
+    }
+
+   
+
+    public Ensambladores[] getEnsambladores() {
+        return ensambladores;
+    }
+
+    public void setEnsambladores(Ensambladores[] ensambladores) {
+        this.ensambladores = ensambladores;
     }
 
     public void setPmAnime(int pmAnime) {

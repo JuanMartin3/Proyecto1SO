@@ -13,18 +13,18 @@ public class Ensambladores extends Trabajador {
     
    
 
-    public Ensambladores (String nombre, Empresa empresa) {
-        super(nombre, empresa);
+    public Ensambladores (Empresa empresa) {
+        super(empresa);
         
     }
     
     public void calcularSalario(){
         this.salarioTrabajador = 50 * 24 * this.empresa.getDiasSim();
+        this.empresa.setCostoOperativo(this.empresa.getCostoOperativo() + this.salarioTrabajador);
 }
 
     @Override
     public void run() {
-        int X = this.empresa.getxPcGPU();
         
         calcularSalario();
         
@@ -96,7 +96,7 @@ public class Ensambladores extends Trabajador {
                     
                 }
 
-                sleep(2000); // Tiempo entre revisiones del almacen
+                sleep(this.empresa.getMsPorDia() / 4); // Tiempo entre revisiones del almacen
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Trabajador.class.getName()).log(Level.SEVERE, null, ex);

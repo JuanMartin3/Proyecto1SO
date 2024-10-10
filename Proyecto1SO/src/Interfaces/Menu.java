@@ -6,18 +6,15 @@ package Interfaces;
 
 import Clases.Administrador;
 import Clases.Empresa;
-import Clases.Ensambladores;
-import Clases.Productor;
 import Clases.ProjectManager;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+//import org.jfree.chart.ChartFactory;
+//import org.jfree.chart.ChartPanel;
+//import org.jfree.chart.JFreeChart;
+//import org.jfree.chart.plot.PlotOrientation;
+//import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -103,6 +100,11 @@ public class Menu extends javax.swing.JFrame {
 
     private void EstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadisticasActionPerformed
         // TODO add your handling code here:
+        Estadisticas newframe = new Estadisticas();
+        
+        newframe.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_EstadisticasActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -116,37 +118,81 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CorrerSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorrerSimulacionActionPerformed
-        Empresa msi = new Empresa(4, 100, 300, 4, 5, 6, 7, 8, 4000, 6, 5, 10);
-        
-        Productor trabajador1 = new Productor("Jose", 1, msi);
-        Productor trabajador2 = new Productor("Juan", 2,  msi);
-        Productor trabajador3 = new Productor("David", 3, msi);
-        Productor trabajador4 = new Productor("Julio", 4, msi);
-        Productor trabajador5 = new Productor("Alvaro", 5, msi);
-        
-        ProjectManager pm = new ProjectManager("Juan C.", msi);
-        
-        Ensambladores ensamblador1 = new Ensambladores("Carlos", msi);
-        
-        Administrador admin = new Administrador("Jose", msi);
-
+        //Ejecuta a MSI
+        Empresa msi = new Empresa("MSI", 180000, 25000, 3, 5, 2, 4, 6,  6, 4, 1, 4, 0.2, 2);
+       ProjectManager pm = new ProjectManager(msi);
+       Administrador admin = new Administrador( msi);
+       msi.cargarMSI();
+       msi.cargarTiempo();
+       msi.crearProdCPU();
+       msi.crearProdFuente();
+       msi.crearProdGPU();
+       msi.crearProdPlaca();
+       msi.crearProdRAM();
+       msi.crearEnsamblador();
+       admin.start();
+       pm.start();
        
-        System.out.println("Inicio de la Simulación");
-        
-        trabajador1.start();
-        trabajador2.start();
-        trabajador3.start();
-        trabajador4.start();
-        trabajador5.start();
-        pm.start();
-        ensamblador1.start();
-        admin.start();
-        
-        try {
-            msi.pasoDeDias();
+       //Ejecuta a Apple
+       Empresa apple = new Empresa("Apple", 150000, 120000, 4, 5, 6, 7, 8,  3, 2, 0.3, 2, 0.3, 3);
+       ProjectManager pm1 = new ProjectManager(apple);
+       Administrador admin1 = new Administrador( apple);
+       apple.cargarApple();
+       apple.cargarTiempo();
+       apple.crearProdCPU();
+       apple.crearProdFuente();
+       apple.crearProdGPU();
+       apple.crearProdPlaca();
+       apple.crearProdRAM();
+       apple.crearEnsamblador();
+       admin1.start();
+       pm1.start();
+       
+       try {
+            sleep(msi.getMsPorDia() * msi.getDiasSim() + 15000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+       System.out.println("");
+        System.out.println("*****************************************");
+        System.out.println("INFO FINAL DE SIMULACION DE: "+msi.getNombre());
+        System.out.println("El inventario de CPUs final es: " + msi.getAlmacen().getCantidadCPU());
+        System.out.println("El inventario de RAMs final es: " + msi.getAlmacen().getCantidadRAM());
+        System.out.println("El inventario de GPUs final es: " + msi.getAlmacen().getCantidadGPU());
+        System.out.println("El inventario de Fuentes final es: " + msi.getAlmacen().getCantidadFuente());
+        System.out.println("El inventario de Placas final es: " + msi.getAlmacen().getCantidadPlaca());  
+        System.out.println("El inventario de Pc normales final es: " + msi.getAlmacen().getCantPc()); 
+        System.out.println("El inventario de Pc con gpu final es: " + msi.getAlmacen().getCantPcGPU()); 
+        System.out.println("");
+        System.out.println("Total en multas para el Project Manager: "+msi.getMultaPm());
+        System.out.println("");
+        System.out.println("La ganancia final es de: "+msi.getGananciasBrutas());
+        System.out.println("Las perdidas de la empresa fueron: "+msi.getCostoOperativo());
+        System.out.println("La utilidad final es de: "+msi.getUtilidadEstudio());
+        
+        try {
+            sleep(5000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.out.println("");
+        System.out.println("*****************************************");
+        System.out.println("INFO FINAL DE SIMULACION DE: "+apple.getNombre());
+        System.out.println("El inventario de CPUs final es: " + apple.getAlmacen().getCantidadCPU());
+        System.out.println("El inventario de RAMs final es: " + apple.getAlmacen().getCantidadRAM());
+        System.out.println("El inventario de GPUs final es: " + apple.getAlmacen().getCantidadGPU());
+        System.out.println("El inventario de Fuentes final es: " + apple.getAlmacen().getCantidadFuente());
+        System.out.println("El inventario de Placas final es: " + apple.getAlmacen().getCantidadPlaca());  
+        System.out.println("El inventario de Pc normales final es: " + apple.getAlmacen().getCantPc()); 
+        System.out.println("El inventario de Pc con gpu final es: " + apple.getAlmacen().getCantPcGPU()); 
+        System.out.println("");
+        System.out.println("Total en multas para el Project Manager: "+apple.getMultaPm());
+        System.out.println("");
+        System.out.println("La ganancia final es de: "+apple.getGananciasBrutas());
+        System.out.println("Las perdidas de la empresa fueron: "+apple.getCostoOperativo());
+        System.out.println("La utilidad final es de: "+apple.getUtilidadEstudio());
     }//GEN-LAST:event_CorrerSimulacionActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -7,11 +7,11 @@ package Interfaces;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+//import org.jfree.chart.ChartFactory;
+//import org.jfree.chart.ChartPanel;
+//import org.jfree.chart.JFreeChart;
+//import org.jfree.chart.plot.PlotOrientation;
+//import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -109,22 +109,22 @@ public class Grafico extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        DefaultCategoryDataset datos = new DefaultCategoryDataset();
-    
-        datos.setValue(1000,"Utilidad","MSI");    //msi.getutilidad()
-        datos.setValue(1250,"Utilidad","Apple");  //apple.getutilidad()
-    
-    
-        JFreeChart grafico_barras = ChartFactory.createBarChart3D("Utilidad por Empresa","Empresas","Utilidad en $",datos,PlotOrientation.VERTICAL,true,true,false);
-    
-        ChartPanel panel = new ChartPanel(grafico_barras);
-        panel.setMouseWheelEnabled(true);
-        panel.setPreferredSize(new Dimension(500,300));  
-    
-        jPanel1.setLayout(new BorderLayout());
-        jPanel1.add(panel,BorderLayout.NORTH);
-    
-        pack();
+//        DefaultCategoryDataset datos = new DefaultCategoryDataset();
+//    
+//        datos.setValue(1000,"Utilidad","MSI");    //msi.getutilidad()
+//        datos.setValue(1250,"Utilidad","Apple");  //apple.getutilidad()
+//    
+//    
+//        JFreeChart grafico_barras = ChartFactory.createBarChart3D("Utilidad por Empresa","Empresas","Utilidad en $",datos,PlotOrientation.VERTICAL,true,true,false);
+//    
+//        ChartPanel panel = new ChartPanel(grafico_barras);
+//        panel.setMouseWheelEnabled(true);
+//        panel.setPreferredSize(new Dimension(500,300));  
+//    
+//        jPanel1.setLayout(new BorderLayout());
+//        jPanel1.add(panel,BorderLayout.NORTH);
+//    
+//        pack();
         repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
 

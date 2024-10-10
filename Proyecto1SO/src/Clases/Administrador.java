@@ -14,12 +14,13 @@ import java.util.logging.Logger;
  */
 public class Administrador extends Trabajador{
     
-    public Administrador(String nombre, Empresa empresa) {
-        super(nombre, empresa);
+    public Administrador(Empresa empresa) {
+        super(empresa);
     }
     
     public void calcularSalario(){
         this.salarioTrabajador = 24 * 60 * this.empresa.getDiasSim();
+        this.empresa.setCostoOperativo(this.empresa.getCostoOperativo() + this.salarioTrabajador);
     };
     
     @Override
@@ -35,13 +36,20 @@ public class Administrador extends Trabajador{
                     int nmrPcGPU = this.empresa.getAlmacen().getCantPcGPU();
                     
                     sleep(this.empresa.getMsPorDia());
+                    if(this.empresa.getAlmacen().getCantPc() == 0 && this.empresa.getAlmacen().getCantPcGPU() == 0){
+                        System.out.println("No hay Computadores por vender!");
+                        
+                        this.empresa.setDiasParaEntrega(diasEntrega);
                     
-                    this.empresa.setGananciasBrutas(this.empresa.getGananciasBrutas() + (nmrPc * this.empresa.getPrecioPc()) + (this.empresa.getPrecioPcGPU() * nmrPcGPU));
-                    this.empresa.getAlmacen().setCantPc(0);
-                    this.empresa.getAlmacen().setCantPcGPU(0);
-                    System.out.println("Se vendieron PCs!");
+                    }else{
+                        this.empresa.setGananciasBrutas(this.empresa.getGananciasBrutas() + (nmrPc * this.empresa.getPrecioPc()) + (this.empresa.getPrecioPcGPU() * nmrPcGPU));
+                        this.empresa.getAlmacen().setCantPc(0);
+                        this.empresa.getAlmacen().setCantPcGPU(0);
+                        System.out.println("Se vendieron PCs! "+this.empresa.getGananciasBrutas());
                     
-                    this.empresa.setDiasParaEntrega(diasEntrega);
+                        this.empresa.setDiasParaEntrega(diasEntrega);
+                    
+                    }
                 }else{
                     int horaAdmin = (int)(Math.random() * 24) + 1;   
                     
