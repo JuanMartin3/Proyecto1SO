@@ -7,6 +7,8 @@ package Interfaces;
 import Clases.Administrador;
 import Clases.Empresa;
 import Clases.ProjectManager;
+import java.io.FileWriter;
+import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -148,6 +150,7 @@ public class Menu extends javax.swing.JFrame {
        admin1.start();
        pm1.start();
        
+       
        try {
             sleep(msi.getMsPorDia() * msi.getDiasSim() + 15000);
         } catch (InterruptedException ex) {
@@ -193,6 +196,24 @@ public class Menu extends javax.swing.JFrame {
         System.out.println("La ganancia final es de: "+apple.getGananciasBrutas());
         System.out.println("Las perdidas de la empresa fueron: "+apple.getCostoOperativo());
         System.out.println("La utilidad final es de: "+apple.getUtilidadEstudio());
+        
+         try {
+        FileWriter writer = new FileWriter("Datos.txt");
+        writer.write("Utilidad Apple=" + apple.getUtilidadEstudio() + "\n");
+        writer.write("Costo Operativo Apple=" +  apple.getCostoOperativo() + "\n");
+        writer.write("Ganancias Brutas Apple=" +  apple.getGananciasBrutas() + "\n");
+        writer.write("Multas PM Apple=" +  apple.getMultaPm() + "\n");
+        writer.write("Utilidad MSI=" + msi.getUtilidadEstudio() + "\n");
+        writer.write("Costo Operativo MSI=" +  msi.getCostoOperativo() + "\n");
+        writer.write("Ganancias Brutas MSI=" +  msi.getGananciasBrutas() + "\n");
+        writer.write("Multas PM MSI=" +  msi.getMultaPm() + "\n");
+        writer.close();
+        System.out.println("Datos guardados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al guardar los datos.");
+    }
+        
     }//GEN-LAST:event_CorrerSimulacionActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

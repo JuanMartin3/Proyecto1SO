@@ -196,7 +196,7 @@ public class Parametros extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here: Tiempo
+        // TODO add your handling code here: Tiempo G
         try {
         FileWriter writer = new FileWriter("Tiempo.txt");
         writer.write("Segundos por día=" + jSpinner14.getValue() + "\n");

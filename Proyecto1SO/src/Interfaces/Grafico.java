@@ -7,11 +7,14 @@ package Interfaces;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-//import org.jfree.chart.ChartFactory;
-//import org.jfree.chart.ChartPanel;
-//import org.jfree.chart.JFreeChart;
-//import org.jfree.chart.plot.PlotOrientation;
-//import org.jfree.data.category.DefaultCategoryDataset;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -108,23 +111,52 @@ public class Grafico extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        String utilidadAppleS;
+        String utilidadMSIS;
+        int utilidadApple = 0;
+        int utilidadMSI = 0;
+                
         
-//        DefaultCategoryDataset datos = new DefaultCategoryDataset();
-//    
-//        datos.setValue(1000,"Utilidad","MSI");    //msi.getutilidad()
-//        datos.setValue(1250,"Utilidad","Apple");  //apple.getutilidad()
-//    
-//    
-//        JFreeChart grafico_barras = ChartFactory.createBarChart3D("Utilidad por Empresa","Empresas","Utilidad en $",datos,PlotOrientation.VERTICAL,true,true,false);
-//    
-//        ChartPanel panel = new ChartPanel(grafico_barras);
-//        panel.setMouseWheelEnabled(true);
-//        panel.setPreferredSize(new Dimension(500,300));  
-//    
-//        jPanel1.setLayout(new BorderLayout());
-//        jPanel1.add(panel,BorderLayout.NORTH);
-//    
-//        pack();
+        try {
+        BufferedReader reader = new BufferedReader(new FileReader("Datos.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] partes = line.split("=");
+            if (partes[0].equals("Utilidad Apple")) {
+                utilidadAppleS = String.valueOf(partes[1]);
+                utilidadApple = Integer.parseInt(utilidadAppleS.substring(0, utilidadAppleS.indexOf(".")));
+                
+            } else if (partes[0].equals("Utilidad MSI")) {
+                utilidadMSIS = String.valueOf(partes[1]);
+                utilidadMSI = Integer.parseInt(utilidadMSIS.substring(0, utilidadMSIS.indexOf(".")));
+            }
+        }
+        reader.close();
+        System.out.println("Datos cargados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al cargar los datos.");
+    }
+        
+        DefaultCategoryDataset datos = new DefaultCategoryDataset();
+    
+        datos.setValue(utilidadMSI,"Utilidad","MSI");    //msi.getutilidad()
+        datos.setValue(utilidadApple,"Utilidad","Apple");  //apple.getutilidad()
+    
+    
+        JFreeChart grafico_barras = ChartFactory.createBarChart3D("Utilidad por Empresa","Empresas","Utilidad en $",datos,PlotOrientation.VERTICAL,true,true,false);
+        
+        grafico_barras.setBorderPaint(Color.GRAY);
+        grafico_barras.setBackgroundPaint(Color.GRAY);
+        grafico_barras.getTitle().setPaint(Color.WHITE);
+        ChartPanel panel = new ChartPanel(grafico_barras);
+        panel.setMouseWheelEnabled(true);
+        panel.setPreferredSize(new Dimension(500,300));  
+    
+        jPanel1.setLayout(new BorderLayout());
+        jPanel1.add(panel,BorderLayout.NORTH);
+    
+        pack();
         repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
 
