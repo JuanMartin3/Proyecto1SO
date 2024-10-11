@@ -118,18 +118,32 @@ public class Grafico extends javax.swing.JFrame {
                 
         
         try {
-        BufferedReader reader = new BufferedReader(new FileReader("Datos.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("Datos Apple.txt"));
         String line;
         while ((line = reader.readLine()) != null) {
             String[] partes = line.split("=");
             if (partes[0].equals("Utilidad Apple")) {
                 utilidadAppleS = String.valueOf(partes[1]);
                 utilidadApple = Integer.parseInt(utilidadAppleS.substring(0, utilidadAppleS.indexOf(".")));
-                
-            } else if (partes[0].equals("Utilidad MSI")) {
+            }
+        }
+        reader.close();
+        System.out.println("Datos cargados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al cargar los datos.");
+    }
+        
+        try {
+        BufferedReader reader = new BufferedReader(new FileReader("Datos MSI.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] partes = line.split("=");
+            if (partes[0].equals("Utilidad MSI")) {
                 utilidadMSIS = String.valueOf(partes[1]);
                 utilidadMSI = Integer.parseInt(utilidadMSIS.substring(0, utilidadMSIS.indexOf(".")));
-            }
+                
+            } 
         }
         reader.close();
         System.out.println("Datos cargados exitosamente.");

@@ -35,9 +35,13 @@ public class Administrador extends Trabajador{
                     int nmrPc = this.empresa.getAlmacen().getCantPc();
                     int nmrPcGPU = this.empresa.getAlmacen().getCantPcGPU();
                     
+                    
                     sleep(this.empresa.getMsPorDia());
                     if(this.empresa.getAlmacen().getCantPc() == 0 && this.empresa.getAlmacen().getCantPcGPU() == 0){
-                        System.out.println("No hay Computadores por vender!");
+                        
+                        System.out.println("");
+                        System.out.println("*************************************");
+                        System.out.println("No hay PCs para que el administrador venda!");
                         
                         this.empresa.setDiasParaEntrega(diasEntrega);
                     
@@ -45,7 +49,10 @@ public class Administrador extends Trabajador{
                         this.empresa.setGananciasBrutas(this.empresa.getGananciasBrutas() + (nmrPc * this.empresa.getPrecioPc()) + (this.empresa.getPrecioPcGPU() * nmrPcGPU));
                         this.empresa.getAlmacen().setCantPc(0);
                         this.empresa.getAlmacen().setCantPcGPU(0);
-                        System.out.println("Se vendieron PCs! "+this.empresa.getGananciasBrutas());
+                        
+                        System.out.println("");
+                        System.out.println("*************************************");
+                        System.out.println("El administrador esta vendiendo PCs!");
                     
                         this.empresa.setDiasParaEntrega(diasEntrega);
                     
@@ -58,11 +65,14 @@ public class Administrador extends Trabajador{
                     
                     if(this.empresa.getPmAnime() == 1){
                         this.empresa.setMultaPm(this.empresa.getMultaPm() + 100);
-                        System.out.println("Se multo al Pm!");
+                        System.out.println("");
+                        System.out.println("*************************************");
+                        System.out.println("El administrador multo al Pm!");
                                 
                     }else{
-                    
-                        System.out.println("No se multo al Pm!");
+                        System.out.println("");
+                        System.out.println("*************************************");
+                        System.out.println("El administrador no multo al Pm!");
                     }
                     
                     sleep((long) (this.empresa.getMsPorDia() - (horaAdmin * horaEnMs)));

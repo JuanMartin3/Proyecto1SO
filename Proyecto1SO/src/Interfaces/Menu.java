@@ -120,6 +120,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CorrerSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorrerSimulacionActionPerformed
+        
+
         //Ejecuta a MSI
         Empresa msi = new Empresa("MSI", 180000, 25000, 3, 5, 2, 4, 6,  6, 4, 1, 4, 0.2, 2);
        ProjectManager pm = new ProjectManager(msi);
@@ -149,84 +151,8 @@ public class Menu extends javax.swing.JFrame {
        apple.crearEnsamblador();
        admin1.start();
        pm1.start();
-       
-       
-       try {
-            sleep(msi.getMsPorDia() * msi.getDiasSim() + 15000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-       System.out.println("");
-        System.out.println("*****************************************");
-        System.out.println("INFO FINAL DE SIMULACION DE: "+msi.getNombre());
-        System.out.println("El inventario de CPUs final es: " + msi.getAlmacen().getCantidadCPU());
-        System.out.println("El inventario de RAMs final es: " + msi.getAlmacen().getCantidadRAM());
-        System.out.println("El inventario de GPUs final es: " + msi.getAlmacen().getCantidadGPU());
-        System.out.println("El inventario de Fuentes final es: " + msi.getAlmacen().getCantidadFuente());
-        System.out.println("El inventario de Placas final es: " + msi.getAlmacen().getCantidadPlaca());  
-        System.out.println("El inventario de Pc normales final es: " + msi.getAlmacen().getCantPc()); 
-        System.out.println("El inventario de Pc con gpu final es: " + msi.getAlmacen().getCantPcGPU()); 
-        System.out.println("");
-        System.out.println("Total en multas para el Project Manager: "+msi.getMultaPm());
-        System.out.println("");
-        System.out.println("La ganancia final es de: "+msi.getGananciasBrutas());
-        System.out.println("Las perdidas de la empresa fueron: "+msi.getCostoOperativo());
-        System.out.println("La utilidad final es de: "+msi.getUtilidadEstudio());
-        
-        try {
-            sleep(5000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        System.out.println("");
-        System.out.println("*****************************************");
-        System.out.println("INFO FINAL DE SIMULACION DE: "+apple.getNombre());
-        System.out.println("El inventario de CPUs final es: " + apple.getAlmacen().getCantidadCPU());
-        System.out.println("El inventario de RAMs final es: " + apple.getAlmacen().getCantidadRAM());
-        System.out.println("El inventario de GPUs final es: " + apple.getAlmacen().getCantidadGPU());
-        System.out.println("El inventario de Fuentes final es: " + apple.getAlmacen().getCantidadFuente());
-        System.out.println("El inventario de Placas final es: " + apple.getAlmacen().getCantidadPlaca());  
-        System.out.println("El inventario de Pc normales final es: " + apple.getAlmacen().getCantPc()); 
-        System.out.println("El inventario de Pc con gpu final es: " + apple.getAlmacen().getCantPcGPU()); 
-        System.out.println("");
-        System.out.println("Total en multas para el Project Manager: "+apple.getMultaPm());
-        System.out.println("");
-        System.out.println("La ganancia final es de: "+apple.getGananciasBrutas());
-        System.out.println("Las perdidas de la empresa fueron: "+apple.getCostoOperativo());
-        System.out.println("La utilidad final es de: "+apple.getUtilidadEstudio());
-        
-         try {
-        FileWriter writer = new FileWriter("Datos.txt");
-        writer.write("Utilidad Apple=" + apple.getUtilidadEstudio() + "\n");
-        writer.write("Costo Operativo Apple=" +  apple.getCostoOperativo() + "\n");
-        writer.write("Ganancias Brutas Apple=" +  apple.getGananciasBrutas() + "\n");
-        writer.write("Multas PM Apple=" +  apple.getMultaPm() + "\n");
-        writer.write("CPU Apple=" + apple.getAlmacen().getCantidadCPU() + "\n");
-        writer.write("Placas Apple=" +  apple.getAlmacen().getCantidadPlaca() + "\n");
-        writer.write("RAM Apple=" +  apple.getAlmacen().getCantidadRAM() + "\n");
-        writer.write("Fuentes Apple=" +  apple.getAlmacen().getCantidadFuente() + "\n");
-        writer.write("GPU Apple=" + apple.getAlmacen().getCantidadGPU() + "\n");
-        writer.write("PCN Apple=" +  apple.getAlmacen().getCantPc() + "\n");
-        writer.write("PCGPU Apple=" +  apple.getAlmacen().getCantPcGPU() + "\n");
-        writer.write("Utilidad MSI=" + msi.getUtilidadEstudio() + "\n");
-        writer.write("Costo Operativo MSI=" +  msi.getCostoOperativo() + "\n");
-        writer.write("Ganancias Brutas MSI=" +  msi.getGananciasBrutas() + "\n");
-        writer.write("Multas PM MSI=" +  msi.getMultaPm() + "\n");
-        writer.write("CPU MSI=" + msi.getAlmacen().getCantidadCPU() + "\n");
-        writer.write("Placa MSI=" +  msi.getAlmacen().getCantidadPlaca() + "\n");
-        writer.write("RAM MSI=" +  msi.getAlmacen().getCantidadRAM() + "\n");
-        writer.write("Fuentes MSI=" +  msi.getAlmacen().getCantidadFuente() + "\n");
-        writer.write("GPU MSI=" + msi.getAlmacen().getCantidadGPU() + "\n");
-        writer.write("PCN MSI=" +  msi.getAlmacen().getCantPc() + "\n");
-        writer.write("PCGPU MSI=" +  msi.getAlmacen().getCantPcGPU() + "\n");
-        writer.close();
-        System.out.println("Datos guardados exitosamente.");
-    } catch (IOException e) {
-        e.printStackTrace();
-        System.out.println("Error al guardar los datos.");
-    }
+      
+         
         
     }//GEN-LAST:event_CorrerSimulacionActionPerformed
 

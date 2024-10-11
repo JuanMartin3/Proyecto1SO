@@ -3,4 +3,4 @@ Productor CPU=5
 Productor RAM=5
 Productor Fuente=5
 Productor GPU=5
-Ensamblador=2
+Ensamblador=1

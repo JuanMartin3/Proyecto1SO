@@ -4,6 +4,8 @@
  */
 package Clases;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -23,8 +25,11 @@ public class ProjectManager extends Trabajador{
     }
     
       public void calcularSalario(){
+           int costoAgg = (40 * 24 * this.empresa.getDiasSim()) - this.empresa.getMultaPm();
+          this.empresa.setCostoOperativo(this.empresa.getCostoOperativo() + costoAgg); 
+          
         this.salarioTrabajador = (40 * 24 * this.empresa.getDiasSim()) - this.empresa.getMultaPm();
-        this.empresa.setCostoOperativo(this.empresa.getCostoOperativo() + this.salarioTrabajador);
+        
 }
     
     @Override
@@ -33,7 +38,51 @@ public class ProjectManager extends Trabajador{
         double mediaHoraEnMs = horaEnMs/2;
         
         while(this.empresa.getDiasTranscurridos() < this.empresa.getDiasSim()) {
+           
             try {
+                
+                if(this.empresa.getNombre().equals("MSI")){
+                     try {
+                            FileWriter writer = new FileWriter("Datos MSI.txt");
+                            writer.write("Utilidad MSI=" + this.empresa.getUtilidadEstudio() + "\n");
+                            writer.write("Costo Operativo MSI=" +   this.empresa.getCostoOperativo() + "\n");
+                            writer.write("Ganancias Brutas MSI=" +   this.empresa.getGananciasBrutas() + "\n");
+                            writer.write("Multas PM MSI=" +   this.empresa.getMultaPm() + "\n");
+                            writer.write("CPU MSI=" +  this.empresa.getAlmacen().getCantidadCPU() + "\n");
+                            writer.write("Placa MSI=" +   this.empresa.getAlmacen().getCantidadPlaca() + "\n");
+                            writer.write("RAM MSI=" +   this.empresa.getAlmacen().getCantidadRAM() + "\n");
+                            writer.write("Fuentes MSI=" +   this.empresa.getAlmacen().getCantidadFuente() + "\n");
+                            writer.write("GPU MSI=" +  this.empresa.getAlmacen().getCantidadGPU() + "\n");
+                            writer.write("PCN MSI=" +   this.empresa.getAlmacen().getCantPc() + "\n");
+                            writer.write("PCGPU MSI=" +   this.empresa.getAlmacen().getCantPcGPU() + "\n");
+                            writer.close();
+                            System.out.println("Datos guardados exitosamente.");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.println("Error al guardar los datos.");
+                        }
+                }else{
+                    try{
+                        FileWriter writer = new FileWriter("Datos Apple.txt");
+                        writer.write("Utilidad Apple=" +  this.empresa.getUtilidadEstudio() + "\n");
+                        writer.write("Costo Operativo Apple=" +   this.empresa.getCostoOperativo() + "\n");
+                        writer.write("Ganancias Brutas Apple=" +   this.empresa.getGananciasBrutas() + "\n");
+                        writer.write("Multas PM Apple=" +   this.empresa.getMultaPm() + "\n");
+                        writer.write("CPU Apple=" +  this.empresa.getAlmacen().getCantidadCPU() + "\n");
+                        writer.write("Placas Apple=" +   this.empresa.getAlmacen().getCantidadPlaca() + "\n");
+                        writer.write("RAM Apple=" +   this.empresa.getAlmacen().getCantidadRAM() + "\n");
+                        writer.write("Fuentes Apple=" +   this.empresa.getAlmacen().getCantidadFuente() + "\n");
+                        writer.write("GPU Apple=" +  this.empresa.getAlmacen().getCantidadGPU() + "\n");
+                        writer.write("PCN Apple=" +   this.empresa.getAlmacen().getCantPc() + "\n");
+                        writer.write("PCGPU Apple=" +   this.empresa.getAlmacen().getCantPcGPU() + "\n");
+                        writer.close();
+                        System.out.println("Datos guardados exitosamente.");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("Error al guardar los datos.");
+                    }
+                }
+                
                 int hora = 0;
                 
                 while(hora <= 16){
@@ -76,14 +125,52 @@ public class ProjectManager extends Trabajador{
             this.empresa.setDiasTranscurridos(this.empresa.getDiasTranscurridos() + 1);
         }
         
-         this.empresa.calcularUtilidad();
          calcularSalario();
+          this.empresa.calcularUtilidad();
         
-        try {
-            sleep(15000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ProjectManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if(this.empresa.getNombre().equals("MSI")){
+                     try {
+                            FileWriter writer = new FileWriter("Datos MSI.txt");
+                            writer.write("Utilidad MSI=" + this.empresa.getUtilidadEstudio() + "\n");
+                            writer.write("Costo Operativo MSI=" +   this.empresa.getCostoOperativo() + "\n");
+                            writer.write("Ganancias Brutas MSI=" +   this.empresa.getGananciasBrutas() + "\n");
+                            writer.write("Multas PM MSI=" +   this.empresa.getMultaPm() + "\n");
+                            writer.write("CPU MSI=" +  this.empresa.getAlmacen().getCantidadCPU() + "\n");
+                            writer.write("Placa MSI=" +   this.empresa.getAlmacen().getCantidadPlaca() + "\n");
+                            writer.write("RAM MSI=" +   this.empresa.getAlmacen().getCantidadRAM() + "\n");
+                            writer.write("Fuentes MSI=" +   this.empresa.getAlmacen().getCantidadFuente() + "\n");
+                            writer.write("GPU MSI=" +  this.empresa.getAlmacen().getCantidadGPU() + "\n");
+                            writer.write("PCN MSI=" +   this.empresa.getAlmacen().getCantPc() + "\n");
+                            writer.write("PCGPU MSI=" +   this.empresa.getAlmacen().getCantPcGPU() + "\n");
+                            writer.close();
+                            System.out.println("Datos guardados exitosamente.");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.println("Error al guardar los datos.");
+                        }
+                }else{
+                    try{
+                        FileWriter writer = new FileWriter("Datos Apple.txt");
+                        writer.write("Utilidad Apple=" +  this.empresa.getUtilidadEstudio() + "\n");
+                        writer.write("Costo Operativo Apple=" +   this.empresa.getCostoOperativo() + "\n");
+                        writer.write("Ganancias Brutas Apple=" +   this.empresa.getGananciasBrutas() + "\n");
+                        writer.write("Multas PM Apple=" +   this.empresa.getMultaPm() + "\n");
+                        writer.write("CPU Apple=" +  this.empresa.getAlmacen().getCantidadCPU() + "\n");
+                        writer.write("Placas Apple=" +   this.empresa.getAlmacen().getCantidadPlaca() + "\n");
+                        writer.write("RAM Apple=" +   this.empresa.getAlmacen().getCantidadRAM() + "\n");
+                        writer.write("Fuentes Apple=" +   this.empresa.getAlmacen().getCantidadFuente() + "\n");
+                        writer.write("GPU Apple=" +  this.empresa.getAlmacen().getCantidadGPU() + "\n");
+                        writer.write("PCN Apple=" +   this.empresa.getAlmacen().getCantPc() + "\n");
+                        writer.write("PCGPU Apple=" +   this.empresa.getAlmacen().getCantPcGPU() + "\n");
+                        writer.close();
+                        System.out.println("Datos guardados exitosamente.");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("Error al guardar los datos.");
+                    }
+                }
+        
+        
         
     }
 }

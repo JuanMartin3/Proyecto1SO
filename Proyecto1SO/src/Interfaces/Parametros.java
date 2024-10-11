@@ -54,6 +54,7 @@ public class Parametros extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jSpinner15 = new javax.swing.JSpinner();
+        depurar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,6 +132,14 @@ public class Parametros extends javax.swing.JFrame {
         });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, -1, -1));
         jPanel1.add(jSpinner15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 60, 20));
+
+        depurar.setText("Depurar txt");
+        depurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depurarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(depurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 510, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Parametros 3.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -313,6 +322,49 @@ public class Parametros extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void depurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depurarActionPerformed
+        // TODO add your handling code here:
+         try {
+        FileWriter writer = new FileWriter("Datos Apple.txt");
+        writer.write("Utilidad Apple=" + 0 + "\n");
+        writer.write("Costo Operativo Apple=" +  0+ "\n");
+        writer.write("Ganancias Brutas Apple=" +  0 + "\n");
+        writer.write("Multas PM Apple=" +  0 + "\n");
+        writer.write("CPU Apple=" + 0 + "\n");
+        writer.write("Placas Apple=" +  0 + "\n");
+        writer.write("RAM Apple=" +  0 + "\n");
+        writer.write("Fuentes Apple=" +  0 + "\n");
+        writer.write("GPU Apple=" + 0 + "\n");
+        writer.write("PCN Apple=" +  0 + "\n");
+        writer.write("PCGPU Apple=" +  0 + "\n");
+        writer.close();
+        System.out.println("Datos guardados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al guardar los datos.");
+    }
+        try {
+        FileWriter writer = new FileWriter("Datos MSI.txt");
+        writer.write("Utilidad MSI=" + 0 + "\n");
+        writer.write("Costo Operativo MSI=" +  0 + "\n");
+        writer.write("Ganancias Brutas MSI=" +  0 + "\n");
+        writer.write("Multas PM MSI=" +  0 + "\n");
+        writer.write("CPU MSI=" + 0 + "\n");
+        writer.write("Placa MSI=" +  0 + "\n");
+        writer.write("RAM MSI=" +  0 + "\n");
+        writer.write("Fuentes MSI=" +  0 + "\n");
+        writer.write("GPU MSI=" + 0 + "\n");
+        writer.write("PCN MSI=" +  0 + "\n");
+        writer.write("PCGPU MSI=" +  0 + "\n");
+        writer.close();
+        System.out.println("Datos guardados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al guardar los datos.");
+    }
+
+    }//GEN-LAST:event_depurarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -349,6 +401,7 @@ public class Parametros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton depurar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

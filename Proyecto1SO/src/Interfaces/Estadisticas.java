@@ -119,8 +119,8 @@ public class Estadisticas extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        try {
-        BufferedReader reader = new BufferedReader(new FileReader("Datos.txt"));
+       try {
+        BufferedReader reader = new BufferedReader(new FileReader("Datos Apple.txt"));
         String line;
         while ((line = reader.readLine()) != null) {
             String[] partes = line.split("=");
@@ -157,7 +157,22 @@ public class Estadisticas extends javax.swing.JFrame {
             } else if (partes[0].equals("PCGPU Apple")) {
                 String pcgpuApple = String.valueOf(partes[1]);
                 jLabel23.setText(pcgpuApple);
-            } else if (partes[0].equals("Utilidad MSI")) {
+            } 
+        }
+        reader.close();
+        System.out.println("Datos cargados exitosamente.");
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al cargar los datos.");
+    }
+        
+        
+            try {
+            BufferedReader reader = new BufferedReader(new FileReader("Datos MSI.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+            String[] partes = line.split("=");
+            if (partes[0].equals("Utilidad MSI")) {
                 String utilidadMSI = String.valueOf(partes[1]);
                 jLabel2.setText(utilidadMSI);
             }else if (partes[0].equals("Costo Operativo MSI")) {
@@ -191,13 +206,14 @@ public class Estadisticas extends javax.swing.JFrame {
                 String pcgpuMSI = String.valueOf(partes[1]);
                 jLabel12.setText(pcgpuMSI);
             }
-        }
+            }
         reader.close();
         System.out.println("Datos cargados exitosamente.");
     } catch (IOException e) {
         e.printStackTrace();
         System.out.println("Error al cargar los datos.");
-    }
+}
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
