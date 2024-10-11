@@ -49,7 +49,7 @@ public class ProjectManager extends Trabajador{
                             writer.write("Ganancias Brutas MSI=" +   this.empresa.getGananciasBrutas() + "\n");
                             writer.write("Multas PM MSI=" +   this.empresa.getMultaPm() + "\n");
                             writer.write("CPU MSI=" +  this.empresa.getAlmacen().getCantidadCPU() + "\n");
-                            writer.write("Placa MSI=" +   this.empresa.getAlmacen().getCantidadPlaca() + "\n");
+                            writer.write("Placas MSI=" +   this.empresa.getAlmacen().getCantidadPlaca() + "\n");
                             writer.write("RAM MSI=" +   this.empresa.getAlmacen().getCantidadRAM() + "\n");
                             writer.write("Fuentes MSI=" +   this.empresa.getAlmacen().getCantidadFuente() + "\n");
                             writer.write("GPU MSI=" +  this.empresa.getAlmacen().getCantidadGPU() + "\n");
@@ -136,7 +136,7 @@ public class ProjectManager extends Trabajador{
                             writer.write("Ganancias Brutas MSI=" +   this.empresa.getGananciasBrutas() + "\n");
                             writer.write("Multas PM MSI=" +   this.empresa.getMultaPm() + "\n");
                             writer.write("CPU MSI=" +  this.empresa.getAlmacen().getCantidadCPU() + "\n");
-                            writer.write("Placa MSI=" +   this.empresa.getAlmacen().getCantidadPlaca() + "\n");
+                            writer.write("Placas MSI=" +   this.empresa.getAlmacen().getCantidadPlaca() + "\n");
                             writer.write("RAM MSI=" +   this.empresa.getAlmacen().getCantidadRAM() + "\n");
                             writer.write("Fuentes MSI=" +   this.empresa.getAlmacen().getCantidadFuente() + "\n");
                             writer.write("GPU MSI=" +  this.empresa.getAlmacen().getCantidadGPU() + "\n");
