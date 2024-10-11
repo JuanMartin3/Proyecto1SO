@@ -203,10 +203,24 @@ public class Menu extends javax.swing.JFrame {
         writer.write("Costo Operativo Apple=" +  apple.getCostoOperativo() + "\n");
         writer.write("Ganancias Brutas Apple=" +  apple.getGananciasBrutas() + "\n");
         writer.write("Multas PM Apple=" +  apple.getMultaPm() + "\n");
+        writer.write("CPU Apple=" + apple.getAlmacen().getCantidadCPU() + "\n");
+        writer.write("Placas Apple=" +  apple.getAlmacen().getCantidadPlaca() + "\n");
+        writer.write("RAM Apple=" +  apple.getAlmacen().getCantidadRAM() + "\n");
+        writer.write("Fuentes Apple=" +  apple.getAlmacen().getCantidadFuente() + "\n");
+        writer.write("GPU Apple=" + apple.getAlmacen().getCantidadGPU() + "\n");
+        writer.write("PCN Apple=" +  apple.getAlmacen().getCantPc() + "\n");
+        writer.write("PCGPU Apple=" +  apple.getAlmacen().getCantPcGPU() + "\n");
         writer.write("Utilidad MSI=" + msi.getUtilidadEstudio() + "\n");
         writer.write("Costo Operativo MSI=" +  msi.getCostoOperativo() + "\n");
         writer.write("Ganancias Brutas MSI=" +  msi.getGananciasBrutas() + "\n");
         writer.write("Multas PM MSI=" +  msi.getMultaPm() + "\n");
+        writer.write("CPU MSI=" + msi.getAlmacen().getCantidadCPU() + "\n");
+        writer.write("Placa MSI=" +  msi.getAlmacen().getCantidadPlaca() + "\n");
+        writer.write("RAM MSI=" +  msi.getAlmacen().getCantidadRAM() + "\n");
+        writer.write("Fuentes MSI=" +  msi.getAlmacen().getCantidadFuente() + "\n");
+        writer.write("GPU MSI=" + msi.getAlmacen().getCantidadGPU() + "\n");
+        writer.write("PCN MSI=" +  msi.getAlmacen().getCantPc() + "\n");
+        writer.write("PCGPU MSI=" +  msi.getAlmacen().getCantPcGPU() + "\n");
         writer.close();
         System.out.println("Datos guardados exitosamente.");
     } catch (IOException e) {
